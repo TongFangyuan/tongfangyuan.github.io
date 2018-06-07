@@ -39,36 +39,11 @@
   </entry>
   
   <entry>
-    <title>初学前端CSS之a标签使用总结</title>
-    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%BA%8C/"/>
-    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记二/</id>
-    <published>2018-05-17T02:32:50.000Z</published>
-    <updated>2018-06-07T13:08:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="去掉下划线"><a href="#去掉下划线" class="headerlink" title="去掉下划线"></a>去掉下划线</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;<span class="attribute">text-decoration</span>:none;&#125;</span><br></pre></td></tr></table></figure><h3 id="设置每种状态下的属性"><a href="#设置每种状态下的属性" class="headerlink" title="设置每种状态下的属性"></a>设置每种状态下的属性</h3><p>链接未访问</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>&#123;<span class="attribute">color</span>:red&#125;</span><br></pre></td></tr></table></figure><p>链接已访问</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span>&#123;<span class="attribute">color</span>:blue&#125;</span><br></pre></td></tr></table></figure><p>获得焦点时</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span>&#123;<span class="attribute">color</span>:white&#125;</span><br></pre></td></tr></table></figure><p>鼠标移动到链接上时</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>:yellow&#125;</span><br></pre></td></tr></table></figure><h3 id="设置标签内文字垂直居中"><a href="#设置标签内文字垂直居中" class="headerlink" title="设置标签内文字垂直居中"></a>设置标签内文字垂直居中</h3><p>设置<code>line-height</code>和<code>a</code>标签高度一样即可</p><h3 id="设置a标签的宽高"><a href="#设置a标签的宽高" class="headerlink" title="设置a标签的宽高"></a>设置<code>a</code>标签的宽高</h3><p>因为<code>a</code>是内联标签,无法直接设置宽高,所以要想设置宽高将将其设置为块级元素即可</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">display</span>: inline-block;&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;去掉下划线&quot;&gt;&lt;a href=&quot;#去掉下划线&quot; class=&quot;headerlink&quot; title=&quot;去掉下划线&quot;&gt;&lt;/a&gt;去掉下划线&lt;/h3&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://tongfangyuan.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="CSS" scheme="https://tongfangyuan.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初学前端CSS之a标签使用总结</title>
+    <title>初学前端之CSS常用的几种选择器</title>
     <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E9%80%89%E6%8B%A9%E5%99%A8/"/>
     <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS常用的几种选择器/</id>
     <published>2018-05-17T02:32:50.000Z</published>
-    <updated>2018-06-07T13:08:01.000Z</updated>
+    <updated>2018-06-07T13:16:43.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="id-选择器"><a href="#id-选择器" class="headerlink" title="id 选择器"></a>id 选择器</h2><h4 id="id选择器用-标识"><a href="#id选择器用-标识" class="headerlink" title="id选择器用#标识"></a>id选择器用<code>#</code>标识</h4><p>定义id为red的标签颜色为红色</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#red</span>&#123;<span class="attribute">color</span>:red&#125;</span><br></pre></td></tr></table></figure><p>则下面的HTML代码<code>p</code>标签会被渲染成红色</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"red"</span>&gt;</span>这个段落是红色。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h2><h4 id="类选择器用-来标识"><a href="#类选择器用-来标识" class="headerlink" title="类选择器用.来标识"></a>类选择器用<code>.</code>来标识</h4><p>定义一个位置居中的类选择器</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center</span>&#123;<span class="attribute">text-align</span>:center&#125;</span><br></pre></td></tr></table></figure><p>下面代码，中<code>h1</code>标签会居中显示</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"center"</span>&gt;</span>This heading will be center-aligned<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h2><h4 id="设置一些常见标签的样式"><a href="#设置一些常见标签的样式" class="headerlink" title="设置一些常见标签的样式"></a>设置一些常见标签的样式</h4><p>设置<code>h1</code>的字体大小为<code>12px</code><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span>&#123;<span class="attribute">font-size</span>:<span class="number">12px</span>&#125;</span><br></pre></td></tr></table></figure></p><p>html代码<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>字体大小为12px<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure></p>]]></content>
     
@@ -103,6 +78,31 @@
       
         &lt;blockquote&gt;
 &lt;h3 id=&quot;新手开发中遇到的问题-在这里总结一下-方便以后排查&quot;&gt;&lt;a href=&quot;#新手开发中遇到的问题-在这里总结一下-方便以后排查&quot; class=&quot;headerlink&quot; title=&quot;新手开发中遇到的问题,在这里总结一下,方便以后排查&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://tongfangyuan.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="CSS" scheme="https://tongfangyuan.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>初学前端CSS之a标签使用总结</title>
+    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%BA%8C/"/>
+    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记二/</id>
+    <published>2018-05-17T02:32:50.000Z</published>
+    <updated>2018-06-07T13:08:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="去掉下划线"><a href="#去掉下划线" class="headerlink" title="去掉下划线"></a>去掉下划线</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;<span class="attribute">text-decoration</span>:none;&#125;</span><br></pre></td></tr></table></figure><h3 id="设置每种状态下的属性"><a href="#设置每种状态下的属性" class="headerlink" title="设置每种状态下的属性"></a>设置每种状态下的属性</h3><p>链接未访问</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>&#123;<span class="attribute">color</span>:red&#125;</span><br></pre></td></tr></table></figure><p>链接已访问</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span>&#123;<span class="attribute">color</span>:blue&#125;</span><br></pre></td></tr></table></figure><p>获得焦点时</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span>&#123;<span class="attribute">color</span>:white&#125;</span><br></pre></td></tr></table></figure><p>鼠标移动到链接上时</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>:yellow&#125;</span><br></pre></td></tr></table></figure><h3 id="设置标签内文字垂直居中"><a href="#设置标签内文字垂直居中" class="headerlink" title="设置标签内文字垂直居中"></a>设置标签内文字垂直居中</h3><p>设置<code>line-height</code>和<code>a</code>标签高度一样即可</p><h3 id="设置a标签的宽高"><a href="#设置a标签的宽高" class="headerlink" title="设置a标签的宽高"></a>设置<code>a</code>标签的宽高</h3><p>因为<code>a</code>是内联标签,无法直接设置宽高,所以要想设置宽高将将其设置为块级元素即可</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">display</span>: inline-block;&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;去掉下划线&quot;&gt;&lt;a href=&quot;#去掉下划线&quot; class=&quot;headerlink&quot; title=&quot;去掉下划线&quot;&gt;&lt;/a&gt;去掉下划线&lt;/h3&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;
       
     
     </summary>
