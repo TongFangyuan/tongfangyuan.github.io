@@ -103,22 +103,20 @@
 
 
   <meta name="description" content="工作不常用但可能需要google的一些知识，整理总结一下，方便以后查找，本文收集的有4点：获取系统当前音量、NSLog宏定义、修改app语言、获取app基础信息。">
-<meta name="keywords" content="实践">
+<meta name="keywords" content="笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS 整理之一">
-<meta property="og:url" content="https://tongfangyuan.github.io/2018/06/07/iOS 整理之一/index.html">
+<meta property="og:title" content="iOS 开发笔记（二）">
+<meta property="og:url" content="https://tongfangyuan.github.io/2018/06/07/iOS 开发笔记（二）/index.html">
 <meta property="og:site_name" content="Tong">
 <meta property="og:description" content="工作不常用但可能需要google的一些知识，整理总结一下，方便以后查找，本文收集的有4点：获取系统当前音量、NSLog宏定义、修改app语言、获取app基础信息。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/82d0ef27gy1frujk3cwx8j20t50d8784.jpg">
-<meta property="og:updated_time" content="2018-06-07T14:20:17.000Z">
+<meta property="og:updated_time" content="2018-06-26T13:00:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS 整理之一">
+<meta name="twitter:title" content="iOS 开发笔记（二）">
 <meta name="twitter:description" content="工作不常用但可能需要google的一些知识，整理总结一下，方便以后查找，本文收集的有4点：获取系统当前音量、NSLog宏定义、修改app语言、获取app基础信息。">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/82d0ef27gy1frujk3cwx8j20t50d8784.jpg">
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="Tong" type="application/atom+xml" />
@@ -126,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="https://tongfangyuan.github.io/2018/06/07/iOS 整理之一/"/>
+  <link rel="canonical" href="https://tongfangyuan.github.io/2018/06/07/iOS 开发笔记（二）/"/>
 
 
 
@@ -136,7 +134,7 @@
   };
 </script>
 
-  <title>iOS 整理之一 | Tong</title>
+  <title>iOS 开发笔记（二） | Tong</title>
   
 
 
@@ -284,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tongfangyuan.github.io/2018/06/07/iOS 整理之一/">
+    <link itemprop="mainEntityOfPage" href="https://tongfangyuan.github.io/2018/06/07/iOS 开发笔记（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tong">
@@ -301,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS 整理之一
+          <h1 class="post-title" itemprop="name headline">iOS 开发笔记（二）
               
             
           </h1>
@@ -329,6 +327,22 @@
               <time title="Created: 2018-06-07 22:20:17" itemprop="dateCreated datePublished" datetime="2018-06-07T22:20:17+08:00">2018-06-07</time>
             
 
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-06-26 21:00:14" itemprop="dateModified" datetime="2018-06-26T21:00:14+08:00">2018-06-26</time>
+              
             
           </span>
 
@@ -359,9 +373,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/07/iOS 整理之一/#comments" itemprop="discussionUrl">
+                <a href="/2018/06/07/iOS 开发笔记（二）/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/07/iOS 整理之一/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/06/07/iOS 开发笔记（二）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -399,6 +413,7 @@
 <li><code>info</code>-&gt;<code>Localization native development region</code>-&gt;打开下拉选项卡选择<code>china</code></li>
 </ol>
 <p><img src="http://ww1.sinaimg.cn/large/82d0ef27gy1frujk3cwx8j20t50d8784.jpg"></p>
+<h4 id="使用block回调方式接收通知"><a href="#使用block回调方式接收通知" class="headerlink" title="使用block回调方式接收通知"></a>使用<code>block</code>回调方式接收通知</h4><p>block回调会retain系统，需要注意循环引用<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf = <span class="keyword">self</span>;</span><br><span class="line">    [[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserverForName:<span class="built_in">UITextFieldTextDidChangeNotification</span> object:<span class="keyword">self</span>.userTextField queue:[<span class="built_in">NSOperationQueue</span> mainQueue] usingBlock:^(<span class="built_in">NSNotification</span> * _Nonnull note) &#123;</span><br><span class="line">        <span class="built_in">UITextField</span> *textField = note.object;</span><br><span class="line">        <span class="keyword">if</span> (textField.text.length) &#123;</span><br><span class="line">            [weakSelf.doneButton setTitleColor:[<span class="built_in">UIColor</span> blackColor] forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">            [weakSelf.doneButton setUserInteractionEnabled:<span class="literal">YES</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            [weakSelf.doneButton setTitleColor:[<span class="built_in">UIColor</span> lightGrayColor] forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">            [weakSelf.doneButton setUserInteractionEnabled:<span class="literal">NO</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure></p>
 <h4 id="获取app信息"><a href="#获取app信息" class="headerlink" title="获取app信息"></a>获取<code>app</code>信息</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app 信息字典</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *infoDictionary = [[<span class="built_in">NSBundle</span> mainBundle] infoDictionary];</span><br><span class="line"><span class="comment">// app名称  </span></span><br><span class="line"><span class="built_in">NSString</span> *app_Name = [infoDictionary objectForKey:<span class="string">@"CFBundleDisplayName"</span>]; </span><br><span class="line"><span class="comment">// app版本  </span></span><br><span class="line"><span class="built_in">NSString</span> *app_Version = [infoDictionary objectForKey:<span class="string">@"CFBundleShortVersionString"</span>];  </span><br><span class="line"><span class="comment">// app build版本  </span></span><br><span class="line"><span class="built_in">NSString</span> *app_build = [infoDictionary objectForKey:<span class="string">@"CFBundleVersion"</span>]; </span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,infoDictionary);</span><br></pre></td></tr></table></figure>
 <p>控制台输出<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">    <span class="keyword">BuildMachineOSBuild </span>= <span class="number">17</span>C88<span class="comment">;</span></span><br><span class="line">    CFBundleDevelopmentRegion = <span class="string">"zh_CN"</span><span class="comment">;</span></span><br><span class="line">    CFBundleDisplayName = <span class="string">"app名称"</span><span class="comment">;</span></span><br><span class="line">    CFBundleDocumentTypes =     (</span><br><span class="line">                &#123;</span><br><span class="line">            CFBundleTypeIconFiles =             (</span><br><span class="line">                <span class="string">"Icon-Small.png"</span>,</span><br><span class="line">                <span class="string">"Icon.png"</span></span><br><span class="line">            )<span class="comment">;</span></span><br><span class="line">            CFBundleTypeName = <span class="string">"Aura Config"</span><span class="comment">;</span></span><br><span class="line">            CFBundleTypeRole = Viewer<span class="comment">;</span></span><br><span class="line">            LSHandlerRank = Owner<span class="comment">;</span></span><br><span class="line">            LSItemContentTypes =             (</span><br><span class="line">                <span class="string">"com.aylanetworks.auraconfig"</span></span><br><span class="line">            )<span class="comment">;</span></span><br><span class="line">        &#125;</span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    CFBundleExecutable = Aura<span class="comment">;</span></span><br><span class="line">    CFBundleIcons =     &#123;</span><br><span class="line">        CFBundlePrimaryIcon =         &#123;</span><br><span class="line">            CFBundleIconFiles =             (</span><br><span class="line">                AppIcon29x29,</span><br><span class="line">                AppIcon4<span class="number">0x40</span>,</span><br><span class="line">                AppIcon6<span class="number">0x60</span></span><br><span class="line">            )<span class="comment">;</span></span><br><span class="line">            CFBundleIconName = AppIcon<span class="comment">;</span></span><br><span class="line">            UIPrerenderedIcon = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">        &#125;<span class="comment">;</span></span><br><span class="line">    &#125;<span class="comment">;</span></span><br><span class="line">    CFBundleIdentifier = <span class="string">"bundle identifier"</span><span class="comment">;</span></span><br><span class="line">    CFBundleInfoDictionaryVersion = <span class="string">"6.0"</span><span class="comment">;</span></span><br><span class="line">    CFBundleName = Aura<span class="comment">;</span></span><br><span class="line">    CFBundleNumericVersion = <span class="number">50364416</span><span class="comment">;</span></span><br><span class="line">    CFBundlePackageType = APPL<span class="comment">;</span></span><br><span class="line">    CFBundleShortVersionString = <span class="string">"1.0"</span><span class="comment">;</span></span><br><span class="line">    CFBundleSignature = <span class="string">"????"</span><span class="comment">;</span></span><br><span class="line">    CFBundleSupportedPlatforms =     (</span><br><span class="line">        iPhoneOS</span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    CFBundleURLTypes =     (</span><br><span class="line">                &#123;</span><br><span class="line">            CFBundleTypeRole = Editor<span class="comment">;</span></span><br><span class="line">            CFBundleURLSchemes =             (</span><br><span class="line">                aylacontrol,</span><br><span class="line">                AgileLink,</span><br><span class="line">                AylaSmartPlug,</span><br><span class="line">                auracontrol</span><br><span class="line">            )<span class="comment">;</span></span><br><span class="line">        &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">            CFBundleTypeRole = Editor<span class="comment">;</span></span><br><span class="line">            CFBundleURLSchemes =             (</span><br><span class="line">                <span class="string">"com.googleusercontent.apps.654054971787-coh52to0m9qta3aoj0sjg224c5t4vg0r"</span></span><br><span class="line">            )<span class="comment">;</span></span><br><span class="line">        &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">            CFBundleTypeRole = Editor<span class="comment">;</span></span><br><span class="line">            CFBundleURLSchemes =             (</span><br><span class="line">                <span class="string">"AylaNetworks.iOS-Aura"</span></span><br><span class="line">            )<span class="comment">;</span></span><br><span class="line">        &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">            CFBundleTypeRole = Editor<span class="comment">;</span></span><br><span class="line">            CFBundleURLSchemes =             (</span><br><span class="line">                wxe450e4ee1187148c</span><br><span class="line">            )<span class="comment">;</span></span><br><span class="line">        &#125;</span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    CFBundleVersion = <span class="number">3</span><span class="comment">;</span></span><br><span class="line">    DTCompiler = <span class="string">"com.apple.compilers.llvm.clang.1_0"</span><span class="comment">;</span></span><br><span class="line">    DTPlatformBuild = <span class="number">15</span>C107<span class="comment">;</span></span><br><span class="line">    DTPlatformName = iphoneos<span class="comment">;</span></span><br><span class="line">    DTPlatformVersion = <span class="string">"11.2"</span><span class="comment">;</span></span><br><span class="line">    DTSDKBuild = <span class="number">15</span>C107<span class="comment">;</span></span><br><span class="line">    DTSDKName = <span class="string">"iphoneos11.2"</span><span class="comment">;</span></span><br><span class="line">    DTXcode = <span class="number">0920</span><span class="comment">;</span></span><br><span class="line">    DTXcodeBuild = <span class="number">9</span>C<span class="number">40b</span><span class="comment">;</span></span><br><span class="line">    ITSAppUsesNonExemptEncryption = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">    LSApplicationQueriesSchemes =     (</span><br><span class="line">        weixin</span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    LSRequiresIPhoneOS = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">    MinimumOSVersion = <span class="string">"9.0"</span><span class="comment">;</span></span><br><span class="line">    NSAppTransportSecurity =     &#123;</span><br><span class="line">        NSAllowsArbitraryLoads = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">        NSAllowsLocalNetworking = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">    &#125;<span class="comment">;</span></span><br><span class="line">    NSBluetoothPeripheralUsageDescription = <span class="string">"Aura is requesting access to Bluetooth to manage nearby compatible devices."</span><span class="comment">;</span></span><br><span class="line">    NSCameraUsageDescription = <span class="string">"Aura would like to use your camera to scan the QR Code."</span><span class="comment">;</span></span><br><span class="line">    NSLocationWhenInUseUsageDescription = <span class="string">"Aura would like to use your location to fill the coordinates. Please allow the app to use your device's location services."</span><span class="comment">;</span></span><br><span class="line">    UIAppFonts =     (</span><br><span class="line">        <span class="string">"HelveticaNeue.ttc"</span></span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    UIDeviceFamily =     (</span><br><span class="line">        <span class="number">1</span></span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    UILaunchImages =     (</span><br><span class="line">                &#123;</span><br><span class="line">            UILaunchImageMinimumOSVersion = <span class="string">"11.0"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageName = <span class="string">"LaunchImage-1100-Portrait-2436h"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageOrientation = Portrait<span class="comment">;</span></span><br><span class="line">            UILaunchImageSize = <span class="string">"&#123;375, 812&#125;"</span><span class="comment">;</span></span><br><span class="line">        &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">            UILaunchImageMinimumOSVersion = <span class="string">"8.0"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageName = <span class="string">"LaunchImage-800-Portrait-736h"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageOrientation = Portrait<span class="comment">;</span></span><br><span class="line">            UILaunchImageSize = <span class="string">"&#123;414, 736&#125;"</span><span class="comment">;</span></span><br><span class="line">        &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">            UILaunchImageMinimumOSVersion = <span class="string">"8.0"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageName = <span class="string">"LaunchImage-800-667h"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageOrientation = Portrait<span class="comment">;</span></span><br><span class="line">            UILaunchImageSize = <span class="string">"&#123;375, 667&#125;"</span><span class="comment">;</span></span><br><span class="line">        &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">            UILaunchImageMinimumOSVersion = <span class="string">"7.0"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageName = <span class="string">"LaunchImage-700"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageOrientation = Portrait<span class="comment">;</span></span><br><span class="line">            UILaunchImageSize = <span class="string">"&#123;320, 480&#125;"</span><span class="comment">;</span></span><br><span class="line">        &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">            UILaunchImageMinimumOSVersion = <span class="string">"7.0"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageName = <span class="string">"LaunchImage-700-568h"</span><span class="comment">;</span></span><br><span class="line">            UILaunchImageOrientation = Portrait<span class="comment">;</span></span><br><span class="line">            UILaunchImageSize = <span class="string">"&#123;320, 568&#125;"</span><span class="comment">;</span></span><br><span class="line">        &#125;</span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    UIMainStoryboardFile = Login<span class="comment">;</span></span><br><span class="line">    UIRequiredDeviceCapabilities =     (</span><br><span class="line">        arm64</span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    UISupportedInterfaceOrientations =     (</span><br><span class="line">        UIInterfaceOrientationPortrait</span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">    UTExportedTypeDeclarations =     (</span><br><span class="line">                &#123;</span><br><span class="line">            UTTypeConformsTo =             (</span><br><span class="line">                <span class="string">"public.data"</span></span><br><span class="line">            )<span class="comment">;</span></span><br><span class="line">            UTTypeDescription = <span class="string">"Aura Config File"</span><span class="comment">;</span></span><br><span class="line">            UTTypeIdentifier = <span class="string">"com.aylanetworks.auraconfig"</span><span class="comment">;</span></span><br><span class="line">            UTTypeTagSpecification =             &#123;</span><br><span class="line">                <span class="string">"public.filename-extension"</span> = auraconfig<span class="comment">;</span></span><br><span class="line">                <span class="string">"public.mime-type"</span> = <span class="string">"application/json"</span><span class="comment">;</span></span><br><span class="line">            &#125;<span class="comment">;</span></span><br><span class="line">        &#125;</span><br><span class="line">    )<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
@@ -421,7 +436,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/实践/" rel="tag"># 实践</a>
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
           
         </div>
       
@@ -443,6 +458,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/12/iOS 开发笔记（三）/" rel="prev" title="iOS 开发笔记（三）">
+                iOS 开发笔记（三） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -526,7 +545,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -631,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取系统音量-iOS6以上可用"><span class="nav-number">1.</span> <span class="nav-text">获取系统音量(iOS6以上可用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSLog宏"><span class="nav-number">2.</span> <span class="nav-text">NSLog宏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改应用语言为中文"><span class="nav-number">3.</span> <span class="nav-text">修改应用语言为中文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取app信息"><span class="nav-number">4.</span> <span class="nav-text">获取app信息</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取系统音量-iOS6以上可用"><span class="nav-number">1.</span> <span class="nav-text">获取系统音量(iOS6以上可用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSLog宏"><span class="nav-number">2.</span> <span class="nav-text">NSLog宏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改应用语言为中文"><span class="nav-number">3.</span> <span class="nav-text">修改应用语言为中文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用block回调方式接收通知"><span class="nav-number">4.</span> <span class="nav-text">使用block回调方式接收通知</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取app信息"><span class="nav-number">5.</span> <span class="nav-text">获取app信息</span></a></li></ol></div>
             
 
           </div>
@@ -785,9 +804,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://tongfangyuan.github.io/2018/06/07/iOS 整理之一/';
-        this.page.identifier = '2018/06/07/iOS 整理之一/';
-        this.page.title = 'iOS 整理之一';
+        this.page.url = 'https://tongfangyuan.github.io/2018/06/07/iOS 开发笔记（二）/';
+        this.page.identifier = '2018/06/07/iOS 开发笔记（二）/';
+        this.page.title = 'iOS 开发笔记（二）';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
