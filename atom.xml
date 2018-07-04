@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tongfangyuan.github.io/"/>
-  <updated>2018-06-26T13:28:24.000Z</updated>
+  <updated>2018-07-04T13:38:21.000Z</updated>
   <id>https://tongfangyuan.github.io/</id>
   
   <author>
@@ -15,6 +15,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模板文件</title>
+    <link href="https://tongfangyuan.github.io/2018/07/03/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6/"/>
+    <id>https://tongfangyuan.github.io/2018/07/03/模板文件/</id>
+    <published>2018-07-03T02:54:35.000Z</published>
+    <updated>2018-07-04T13:38:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一个模板文件</p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一个模板文件&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
+    
+    
+      <category term="模板" scheme="https://tongfangyuan.github.io/tags/%E6%A8%A1%E6%9D%BF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用 Class-dump 反编译第三方ipa</title>
+    <link href="https://tongfangyuan.github.io/2018/07/03/%E5%88%A9%E7%94%A8%20Class-dump%20%E5%8F%8D%E7%BC%96%E8%AF%91%E7%AC%AC%E4%B8%89%E6%96%B9ipa/"/>
+    <id>https://tongfangyuan.github.io/2018/07/03/利用 Class-dump 反编译第三方ipa/</id>
+    <published>2018-07-03T02:54:03.000Z</published>
+    <updated>2018-07-04T13:38:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Class-dump"><a href="#Class-dump" class="headerlink" title="Class-dump"></a>Class-dump</h3><p>一款命令行应用程序，可以反编译出第三方ipa包的类、分类、协议。可以用来学习一些优秀app的设计和实现方式等。</p><a id="more"></a><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>本文下载的是 <strong>3.5 (64 bit)</strong> 版本的</p><p>需要 <strong>Mac OS X 10.8</strong> 或者以上</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol><li>把下载的<code>class-dump</code>(DMG解压后的文件)文件移动到<code>/usr/local/bin</code>文件夹中</li><li>赋予<code>class-dump</code>文件<code>777</code>权限后就可以开始使用了</li></ol><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod <span class="number">777</span> <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span><span class="keyword">class</span>-<span class="keyword">dump</span></span><br></pre></td></tr></table></figure><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>安装完成后再终端输入<code>class-dump --help</code>可以查看用法<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class-dump 3.5 (64 bit)</span><br><span class="line">Usage: class-dump [options] &lt;mach-o-file&gt;</span><br><span class="line"></span><br><span class="line">  where options are:</span><br><span class="line">        -<span class="ruby">a             show instance variable offsets</span></span><br><span class="line"><span class="ruby">        -A             show implementation addresses</span></span><br><span class="line"><span class="ruby">        --arch &lt;arch&gt;  choose a specific architecture from a universal binary (ppc, ppc64, i386, x86_64)</span></span><br><span class="line"><span class="ruby">        -C &lt;regex&gt;     only display classes matching regular expression</span></span><br><span class="line"><span class="ruby">        -f &lt;str&gt;       find string <span class="keyword">in</span> method name</span></span><br><span class="line"><span class="ruby">        -H             generate header files <span class="keyword">in</span> current directory, <span class="keyword">or</span> directory specified with -o</span></span><br><span class="line"><span class="ruby">        -I             sort classes, categories, <span class="keyword">and</span> protocols by inheritance (overrides -s)</span></span><br><span class="line"><span class="ruby">        -o &lt;dir&gt;       output directory used <span class="keyword">for</span> -H</span></span><br><span class="line"><span class="ruby">        -r             recursively expand frameworks <span class="keyword">and</span> fixed VM shared libraries</span></span><br><span class="line"><span class="ruby">        -s             sort classes <span class="keyword">and</span> categories by name</span></span><br><span class="line"><span class="ruby">        -S             sort methods by name</span></span><br><span class="line"><span class="ruby">        -t             suppress header <span class="keyword">in</span> output, <span class="keyword">for</span> testing</span></span><br><span class="line"><span class="ruby">        --list-arches  list the arches <span class="keyword">in</span> the file, <span class="keyword">then</span> exit</span></span><br><span class="line"><span class="ruby">        --sdk-ios      specify iOS SDK version (will look <span class="keyword">in</span> /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS&lt;version&gt;.sdk</span></span><br><span class="line"><span class="ruby">        --sdk-mac      specify Mac OS X version (will look <span class="keyword">in</span> /Developer/SDKs/MacOSX&lt;version&gt;.sdk</span></span><br><span class="line"><span class="ruby">        --sdk-root     specify the full SDK root path (<span class="keyword">or</span> use --sdk-ios/--sdk-mac <span class="keyword">for</span> a shortcut)</span></span><br></pre></td></tr></table></figure></p><h4 id="反编译出ipa包中的头文件信息"><a href="#反编译出ipa包中的头文件信息" class="headerlink" title="反编译出ipa包中的头文件信息"></a>反编译出<code>ipa</code>包中的头文件信息</h4><p>本文以微信读书<code>ipa</code>书为例，越狱ipa可以在某助手下载，也可以自己砸壳</p><h5 id="解压ipa包，得到解压后的文件"><a href="#解压ipa包，得到解压后的文件" class="headerlink" title="解压ipa包，得到解压后的文件"></a>解压<code>ipa</code>包，得到解压后的文件</h5><p><img src="http://ww1.sinaimg.cn/mw690/82d0ef27gy1fs3qtyise8j20he04udh1.jpg" alt=""></p><h5 id="解压后得到的文件"><a href="#解压后得到的文件" class="headerlink" title="解压后得到的文件"></a>解压后得到的文件</h5><p><img src="http://ww1.sinaimg.cn/mw690/82d0ef27gy1fs3qrx8ng7j207f03x0t4.jpg" alt="解压后得到文件"></p><h5 id="运行命令反编译出头文件"><a href="#运行命令反编译出头文件" class="headerlink" title="运行命令反编译出头文件"></a>运行命令反编译出头文件</h5><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span>-<span class="keyword">dump</span> -H <span class="regexp">/Users/</span>admin<span class="regexp">/Desktop/</span>微信读书-<span class="number">2.4</span>.<span class="number">6</span>\(越狱应用\)\ <span class="number">2</span><span class="regexp">/Payload/</span>WeRead.app -o <span class="regexp">/Users/</span>admin<span class="regexp">/Desktop/</span>微信读书-<span class="number">2.4</span>.<span class="number">6</span>\(越狱应用\)\ <span class="number">2</span><span class="regexp">/Payload</span></span><br></pre></td></tr></table></figure><p><img src="http://ww1.sinaimg.cn/mw690/82d0ef27gy1fs3qxlizlfj20pd0d6wi9.jpg" alt=""></p><p>以上就完成了ipa包的反编译，方便学习大厂代码</p><h3 id="相关的资料"><a href="#相关的资料" class="headerlink" title="相关的资料"></a>相关的资料</h3><ul><li><a href="https://github.com/nygard/class-dump" target="_blank" rel="noopener">在github查看项目</a></li><li><a href="http://stevenygard.com/" target="_blank" rel="noopener">作者 Steve Nygard 博客</a></li><li><a href="http://stevenygard.com/projects/class-dump/" target="_blank" rel="noopener">工具更新日志</a></li><li><a href="https://www.jianshu.com/p/1e3fe0a8c048" target="_blank" rel="noopener">安装教程</a></li><li><a href="http://stevenygard.com/projects/class-dump/" target="_blank" rel="noopener">下载地址</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Class-dump&quot;&gt;&lt;a href=&quot;#Class-dump&quot; class=&quot;headerlink&quot; title=&quot;Class-dump&quot;&gt;&lt;/a&gt;Class-dump&lt;/h3&gt;&lt;p&gt;一款命令行应用程序，可以反编译出第三方ipa包的类、分类、协议。可以用来学习一些优秀app的设计和实现方式等。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
+    
+    
+      <category term="逆向" scheme="https://tongfangyuan.github.io/tags/%E9%80%86%E5%90%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>资料整理集合</title>
+    <link href="https://tongfangyuan.github.io/2018/06/28/%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86%E9%9B%86%E5%90%88/"/>
+    <id>https://tongfangyuan.github.io/2018/06/28/资料整理集合/</id>
+    <published>2018-06-28T12:54:10.000Z</published>
+    <updated>2018-07-04T13:38:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一些可能会用到的资料整理集合</p><a id="more"></a><h3 id="设计类"><a href="#设计类" class="headerlink" title="设计类"></a>设计类</h3><ul><li><a href="http://nipponcolors.com/#cyohsyun" target="_blank" rel="noopener">一个非常棒的日本配色网站</a></li><li><a href="https://pbs.twimg.com/media/AuiY8ThCIAIyKxh.png:large" target="_blank" rel="noopener">一个好看的配色方案</a></li><li><a href="https://www.25xt.com/appdesign/15067.html" target="_blank" rel="noopener">五套舒适的配色方案</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一些可能会用到的资料整理集合&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="资料" scheme="https://tongfangyuan.github.io/categories/%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="资料" scheme="https://tongfangyuan.github.io/tags/%E8%B5%84%E6%96%99/"/>
+    
+  </entry>
   
   <entry>
     <title>关于夜间模式功能实践的一次记录</title>
@@ -44,9 +110,9 @@
     <link href="https://tongfangyuan.github.io/2018/06/12/iOS%20%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>https://tongfangyuan.github.io/2018/06/12/iOS 开发笔记（三）/</id>
     <published>2018-06-12T02:31:59.000Z</published>
-    <updated>2018-06-26T13:00:14.000Z</updated>
+    <updated>2018-07-04T13:38:21.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="UITableViewCell-左滑删除功能"><a href="#UITableViewCell-左滑删除功能" class="headerlink" title="UITableViewCell 左滑删除功能"></a>UITableViewCell 左滑删除功能</h3><h4 id="开启编辑模式"><a href="#开启编辑模式" class="headerlink" title="开启编辑模式"></a>开启编辑模式</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)tableView:(<span class="built_in">UITableView</span> *)tableView canEditRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UITableViewCellEditingStyle</span>)tableView:(<span class="built_in">UITableView</span> *)tableView editingStyleForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">UITableViewCellEditingStyleDelete</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="删除按钮标题"><a href="#删除按钮标题" class="headerlink" title="删除按钮标题"></a>删除按钮标题</h4><p>UITableViewCellEditingStyleDelete默认就是删除，可以不用实现该方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">@"删除"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h4 id="事件提交"><a href="#事件提交" class="headerlink" title="事件提交"></a>事件提交</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView commitEditingStyle:(<span class="built_in">UITableViewCellEditingStyle</span>)editingStyle forRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</span><br><span class="line">    [<span class="keyword">self</span> fy_showTitle:<span class="string">@"是否删除"</span> message:<span class="literal">nil</span> confirmHandler:^&#123;</span><br><span class="line">        AylaShare *share = _shares[indexPath.row];</span><br><span class="line">        [<span class="keyword">self</span> deleteShare:share];</span><br><span class="line">    &#125; cancelHandler:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><h4 id="退出键盘"><a href="#退出键盘" class="headerlink" title="退出键盘"></a>退出键盘</h4><p>在<code>viewWillDisappear:</code>中调用有奇效<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span>.view endEditing:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure></p><h4 id="联网时显示导航栏的菊花"><a href="#联网时显示导航栏的菊花" class="headerlink" title="联网时显示导航栏的菊花"></a>联网时显示导航栏的菊花</h4><p>优化用户体验<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">UIApplication</span> sharedApplication].networkActivityIndicatorVisible = <span class="literal">YES</span>;</span><br></pre></td></tr></table></figure></p><h4 id="获取UIView的所有子类"><a href="#获取UIView的所有子类" class="headerlink" title="获取UIView的所有子类"></a>获取<code>UIView</code>的所有子类</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Class * classes = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">int</span> numClasses = objc_getClassList(<span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (numClasses &gt; <span class="number">0</span> )</span><br><span class="line">&#123;</span><br><span class="line">    classes = malloc(<span class="keyword">sizeof</span>(Class) * numClasses);</span><br><span class="line">    numClasses = objc_getClassList(classes, numClasses);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numClasses; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span> (class_getSuperclass(classes[i]) == [<span class="built_in">UIView</span> <span class="keyword">class</span>])&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, <span class="built_in">NSStringFromClass</span>(classes[i]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    free(classes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h3 id="UITableViewCell-左滑删除功能"><a href="#UITableViewCell-左滑删除功能" class="headerlink" title="UITableViewCell 左滑删除功能"></a>UITableViewCell 左滑删除功能</h3><h4 id="开启编辑模式"><a href="#开启编辑模式" class="headerlink" title="开启编辑模式"></a>开启编辑模式</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)tableView:(<span class="built_in">UITableView</span> *)tableView canEditRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UITableViewCellEditingStyle</span>)tableView:(<span class="built_in">UITableView</span> *)tableView editingStyleForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">UITableViewCellEditingStyleDelete</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="删除按钮标题"><a href="#删除按钮标题" class="headerlink" title="删除按钮标题"></a>删除按钮标题</h4><p>UITableViewCellEditingStyleDelete默认就是删除，可以不用实现该方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">@"删除"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h4 id="事件提交"><a href="#事件提交" class="headerlink" title="事件提交"></a>事件提交</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView commitEditingStyle:(<span class="built_in">UITableViewCellEditingStyle</span>)editingStyle forRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</span><br><span class="line">    [<span class="keyword">self</span> fy_showTitle:<span class="string">@"是否删除"</span> message:<span class="literal">nil</span> confirmHandler:^&#123;</span><br><span class="line">        AylaShare *share = _shares[indexPath.row];</span><br><span class="line">        [<span class="keyword">self</span> deleteShare:share];</span><br><span class="line">    &#125; cancelHandler:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><h4 id="退出键盘"><a href="#退出键盘" class="headerlink" title="退出键盘"></a>退出键盘</h4><p>在<code>viewWillDisappear:</code>中调用有奇效<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span>.view endEditing:<span class="literal">YES</span>];</span><br></pre></td></tr></table></figure></p><h4 id="联网时显示导航栏的菊花"><a href="#联网时显示导航栏的菊花" class="headerlink" title="联网时显示导航栏的菊花"></a>联网时显示导航栏的菊花</h4><p>优化用户体验<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">UIApplication</span> sharedApplication].networkActivityIndicatorVisible = <span class="literal">YES</span>;</span><br></pre></td></tr></table></figure></p><h4 id="获取UIView的所有子类"><a href="#获取UIView的所有子类" class="headerlink" title="获取UIView的所有子类"></a>获取<code>UIView</code>的所有子类</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Class * classes = <span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">int</span> numClasses = objc_getClassList(<span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (numClasses &gt; <span class="number">0</span> )</span><br><span class="line">&#123;</span><br><span class="line">    classes = malloc(<span class="keyword">sizeof</span>(Class) * numClasses);</span><br><span class="line">    numClasses = objc_getClassList(classes, numClasses);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numClasses; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span> (class_getSuperclass(classes[i]) == [<span class="built_in">UIView</span> <span class="keyword">class</span>])&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, <span class="built_in">NSStringFromClass</span>(classes[i]));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    free(classes);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>#### </p>]]></content>
     
     <summary type="html">
     
@@ -87,6 +153,32 @@
   </entry>
   
   <entry>
+    <title>初学前端CSS小记一</title>
+    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%B8%80/"/>
+    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/</id>
+    <published>2018-05-17T02:32:50.000Z</published>
+    <updated>2018-07-04T13:38:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><h3 id="新手开发中遇到的问题-在这里总结一下-方便以后排查"><a href="#新手开发中遇到的问题-在这里总结一下-方便以后排查" class="headerlink" title="新手开发中遇到的问题,在这里总结一下,方便以后排查"></a>新手开发中遇到的问题,在这里总结一下,方便以后排查</h3></blockquote><h6 id="去掉button点击后的蓝框"><a href="#去掉button点击后的蓝框" class="headerlink" title="去掉button点击后的蓝框"></a>去掉<code>button</code>点击后的蓝框</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">outline:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="去掉button边框阴影"><a href="#去掉button边框阴影" class="headerlink" title="去掉button边框阴影"></a>去掉<code>button</code>边框阴影</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">border:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="padding、margin、border-图解"><a href="#padding、margin、border-图解" class="headerlink" title="padding、margin、border 图解"></a>padding、margin、border 图解</h6><p><img src="https://i.stack.imgur.com/D9nU6.gif" alt="image"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;h3 id=&quot;新手开发中遇到的问题-在这里总结一下-方便以后排查&quot;&gt;&lt;a href=&quot;#新手开发中遇到的问题-在这里总结一下-方便以后排查&quot; class=&quot;headerlink&quot; title=&quot;新手开发中遇到的问题,在这里总结一下,方便以后排查&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://tongfangyuan.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="CSS" scheme="https://tongfangyuan.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初学前端之CSS常用的几种选择器</title>
     <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E9%80%89%E6%8B%A9%E5%99%A8/"/>
     <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS常用的几种选择器/</id>
@@ -100,32 +192,6 @@
       
       
         &lt;h2 id=&quot;id-选择器&quot;&gt;&lt;a href=&quot;#id-选择器&quot; class=&quot;headerlink&quot; title=&quot;id 选择器&quot;&gt;&lt;/a&gt;id 选择器&lt;/h2&gt;&lt;h4 id=&quot;id选择器用-标识&quot;&gt;&lt;a href=&quot;#id选择器用-标识&quot; class=&quot;headerlink
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://tongfangyuan.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="CSS" scheme="https://tongfangyuan.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初学前端CSS小记一</title>
-    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%B8%80/"/>
-    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/</id>
-    <published>2018-05-17T02:32:50.000Z</published>
-    <updated>2018-06-07T13:08:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><h3 id="新手开发中遇到的问题-在这里总结一下-方便以后排查"><a href="#新手开发中遇到的问题-在这里总结一下-方便以后排查" class="headerlink" title="新手开发中遇到的问题,在这里总结一下,方便以后排查"></a>新手开发中遇到的问题,在这里总结一下,方便以后排查</h3></blockquote><h6 id="去掉button点击后的蓝框"><a href="#去掉button点击后的蓝框" class="headerlink" title="去掉button点击后的蓝框"></a>去掉<code>button</code>点击后的蓝框</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">outline:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="去掉button边框阴影"><a href="#去掉button边框阴影" class="headerlink" title="去掉button边框阴影"></a>去掉<code>button</code>边框阴影</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">border:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="padding、margin、border-图解"><a href="#padding、margin、border-图解" class="headerlink" title="padding、margin、border 图解"></a>padding、margin、border 图解</h6><p><img src="https://i.stack.imgur.com/D9nU6.gif" alt="image"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;h3 id=&quot;新手开发中遇到的问题-在这里总结一下-方便以后排查&quot;&gt;&lt;a href=&quot;#新手开发中遇到的问题-在这里总结一下-方便以后排查&quot; class=&quot;headerlink&quot; title=&quot;新手开发中遇到的问题,在这里总结一下,方便以后排查&quot;&gt;&lt;/
       
     
     </summary>
@@ -343,28 +409,6 @@
     
     
       <category term="笔记" scheme="https://tongfangyuan.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>模板文件</title>
-    <link href="https://tongfangyuan.github.io/2017/03/15/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6/"/>
-    <id>https://tongfangyuan.github.io/2017/03/15/模板文件/</id>
-    <published>2017-03-15T06:35:23.000Z</published>
-    <updated>2018-06-07T13:08:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是一个模板文件</p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是一个模板文件&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="模板" scheme="https://tongfangyuan.github.io/categories/%E6%A8%A1%E6%9D%BF/"/>
-    
-    
-      <category term="模板" scheme="https://tongfangyuan.github.io/tags/%E6%A8%A1%E6%9D%BF/"/>
     
   </entry>
   
