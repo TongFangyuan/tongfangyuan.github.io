@@ -17,28 +17,6 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>模板文件</title>
-    <link href="https://tongfangyuan.github.io/2018/07/03/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6/"/>
-    <id>https://tongfangyuan.github.io/2018/07/03/模板文件/</id>
-    <published>2018-07-03T02:54:35.000Z</published>
-    <updated>2018-07-04T13:38:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是一个模板文件</p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是一个模板文件&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
-    
-    
-      <category term="模板" scheme="https://tongfangyuan.github.io/tags/%E6%A8%A1%E6%9D%BF/"/>
-    
-  </entry>
-  
-  <entry>
     <title>利用 Class-dump 反编译第三方ipa</title>
     <link href="https://tongfangyuan.github.io/2018/07/03/%E5%88%A9%E7%94%A8%20Class-dump%20%E5%8F%8D%E7%BC%96%E8%AF%91%E7%AC%AC%E4%B8%89%E6%96%B9ipa/"/>
     <id>https://tongfangyuan.github.io/2018/07/03/利用 Class-dump 反编译第三方ipa/</id>
@@ -65,9 +43,9 @@
     <link href="https://tongfangyuan.github.io/2018/06/28/%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86%E9%9B%86%E5%90%88/"/>
     <id>https://tongfangyuan.github.io/2018/06/28/资料整理集合/</id>
     <published>2018-06-28T12:54:10.000Z</published>
-    <updated>2018-07-04T13:38:21.000Z</updated>
+    <updated>2018-07-07T03:28:29.000Z</updated>
     
-    <content type="html"><![CDATA[<p>一些可能会用到的资料整理集合</p><a id="more"></a><h3 id="设计类"><a href="#设计类" class="headerlink" title="设计类"></a>设计类</h3><ul><li><a href="http://nipponcolors.com/#cyohsyun" target="_blank" rel="noopener">一个非常棒的日本配色网站</a></li><li><a href="https://pbs.twimg.com/media/AuiY8ThCIAIyKxh.png:large" target="_blank" rel="noopener">一个好看的配色方案</a></li><li><a href="https://www.25xt.com/appdesign/15067.html" target="_blank" rel="noopener">五套舒适的配色方案</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>一些可能会用到的资料整理集合</p><a id="more"></a><h3 id="设计类"><a href="#设计类" class="headerlink" title="设计类"></a>设计类</h3><ul><li><a href="http://nipponcolors.com/#cyohsyun" target="_blank" rel="noopener">一个非常棒的日本配色网站</a></li><li><a href="https://pbs.twimg.com/media/AuiY8ThCIAIyKxh.png:large" target="_blank" rel="noopener">一个好看的配色方案</a></li><li><a href="https://www.25xt.com/appdesign/15067.html" target="_blank" rel="noopener">五套舒适的配色方案</a></li></ul><h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><ul><li><a href="http://www.axuer.com/article/32" target="_blank" rel="noopener">9款ios开发者辅助工具</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -153,20 +131,19 @@
   </entry>
   
   <entry>
-    <title>初学前端CSS小记一</title>
-    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%B8%80/"/>
-    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/</id>
+    <title>初学前端CSS之a标签使用总结</title>
+    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%BA%8C/"/>
+    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记二/</id>
     <published>2018-05-17T02:32:50.000Z</published>
-    <updated>2018-07-04T13:38:21.000Z</updated>
+    <updated>2018-06-07T13:08:01.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><h3 id="新手开发中遇到的问题-在这里总结一下-方便以后排查"><a href="#新手开发中遇到的问题-在这里总结一下-方便以后排查" class="headerlink" title="新手开发中遇到的问题,在这里总结一下,方便以后排查"></a>新手开发中遇到的问题,在这里总结一下,方便以后排查</h3></blockquote><h6 id="去掉button点击后的蓝框"><a href="#去掉button点击后的蓝框" class="headerlink" title="去掉button点击后的蓝框"></a>去掉<code>button</code>点击后的蓝框</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">outline:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="去掉button边框阴影"><a href="#去掉button边框阴影" class="headerlink" title="去掉button边框阴影"></a>去掉<code>button</code>边框阴影</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">border:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="padding、margin、border-图解"><a href="#padding、margin、border-图解" class="headerlink" title="padding、margin、border 图解"></a>padding、margin、border 图解</h6><p><img src="https://i.stack.imgur.com/D9nU6.gif" alt="image"></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="去掉下划线"><a href="#去掉下划线" class="headerlink" title="去掉下划线"></a>去掉下划线</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;<span class="attribute">text-decoration</span>:none;&#125;</span><br></pre></td></tr></table></figure><h3 id="设置每种状态下的属性"><a href="#设置每种状态下的属性" class="headerlink" title="设置每种状态下的属性"></a>设置每种状态下的属性</h3><p>链接未访问</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>&#123;<span class="attribute">color</span>:red&#125;</span><br></pre></td></tr></table></figure><p>链接已访问</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span>&#123;<span class="attribute">color</span>:blue&#125;</span><br></pre></td></tr></table></figure><p>获得焦点时</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span>&#123;<span class="attribute">color</span>:white&#125;</span><br></pre></td></tr></table></figure><p>鼠标移动到链接上时</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>:yellow&#125;</span><br></pre></td></tr></table></figure><h3 id="设置标签内文字垂直居中"><a href="#设置标签内文字垂直居中" class="headerlink" title="设置标签内文字垂直居中"></a>设置标签内文字垂直居中</h3><p>设置<code>line-height</code>和<code>a</code>标签高度一样即可</p><h3 id="设置a标签的宽高"><a href="#设置a标签的宽高" class="headerlink" title="设置a标签的宽高"></a>设置<code>a</code>标签的宽高</h3><p>因为<code>a</code>是内联标签,无法直接设置宽高,所以要想设置宽高将将其设置为块级元素即可</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">display</span>: inline-block;&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;blockquote&gt;
-&lt;h3 id=&quot;新手开发中遇到的问题-在这里总结一下-方便以后排查&quot;&gt;&lt;a href=&quot;#新手开发中遇到的问题-在这里总结一下-方便以后排查&quot; class=&quot;headerlink&quot; title=&quot;新手开发中遇到的问题,在这里总结一下,方便以后排查&quot;&gt;&lt;/
+        &lt;h3 id=&quot;去掉下划线&quot;&gt;&lt;a href=&quot;#去掉下划线&quot; class=&quot;headerlink&quot; title=&quot;去掉下划线&quot;&gt;&lt;/a&gt;去掉下划线&lt;/h3&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;
       
     
     </summary>
@@ -204,19 +181,20 @@
   </entry>
   
   <entry>
-    <title>初学前端CSS之a标签使用总结</title>
-    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%BA%8C/"/>
-    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记二/</id>
+    <title>初学前端CSS小记一</title>
+    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%B8%80/"/>
+    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/</id>
     <published>2018-05-17T02:32:50.000Z</published>
-    <updated>2018-06-07T13:08:01.000Z</updated>
+    <updated>2018-07-04T13:38:21.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="去掉下划线"><a href="#去掉下划线" class="headerlink" title="去掉下划线"></a>去掉下划线</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;<span class="attribute">text-decoration</span>:none;&#125;</span><br></pre></td></tr></table></figure><h3 id="设置每种状态下的属性"><a href="#设置每种状态下的属性" class="headerlink" title="设置每种状态下的属性"></a>设置每种状态下的属性</h3><p>链接未访问</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:link</span>&#123;<span class="attribute">color</span>:red&#125;</span><br></pre></td></tr></table></figure><p>链接已访问</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:visited</span>&#123;<span class="attribute">color</span>:blue&#125;</span><br></pre></td></tr></table></figure><p>获得焦点时</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:active</span>&#123;<span class="attribute">color</span>:white&#125;</span><br></pre></td></tr></table></figure><p>鼠标移动到链接上时</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">color</span>:yellow&#125;</span><br></pre></td></tr></table></figure><h3 id="设置标签内文字垂直居中"><a href="#设置标签内文字垂直居中" class="headerlink" title="设置标签内文字垂直居中"></a>设置标签内文字垂直居中</h3><p>设置<code>line-height</code>和<code>a</code>标签高度一样即可</p><h3 id="设置a标签的宽高"><a href="#设置a标签的宽高" class="headerlink" title="设置a标签的宽高"></a>设置<code>a</code>标签的宽高</h3><p>因为<code>a</code>是内联标签,无法直接设置宽高,所以要想设置宽高将将其设置为块级元素即可</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>&#123;<span class="attribute">display</span>: inline-block;&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<blockquote><h3 id="新手开发中遇到的问题-在这里总结一下-方便以后排查"><a href="#新手开发中遇到的问题-在这里总结一下-方便以后排查" class="headerlink" title="新手开发中遇到的问题,在这里总结一下,方便以后排查"></a>新手开发中遇到的问题,在这里总结一下,方便以后排查</h3></blockquote><h6 id="去掉button点击后的蓝框"><a href="#去掉button点击后的蓝框" class="headerlink" title="去掉button点击后的蓝框"></a>去掉<code>button</code>点击后的蓝框</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">outline:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="去掉button边框阴影"><a href="#去掉button边框阴影" class="headerlink" title="去掉button边框阴影"></a>去掉<code>button</code>边框阴影</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">border:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="padding、margin、border-图解"><a href="#padding、margin、border-图解" class="headerlink" title="padding、margin、border 图解"></a>padding、margin、border 图解</h6><p><img src="https://i.stack.imgur.com/D9nU6.gif" alt="image"></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;去掉下划线&quot;&gt;&lt;a href=&quot;#去掉下划线&quot; class=&quot;headerlink&quot; title=&quot;去掉下划线&quot;&gt;&lt;/a&gt;去掉下划线&lt;/h3&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;
+        &lt;blockquote&gt;
+&lt;h3 id=&quot;新手开发中遇到的问题-在这里总结一下-方便以后排查&quot;&gt;&lt;a href=&quot;#新手开发中遇到的问题-在这里总结一下-方便以后排查&quot; class=&quot;headerlink&quot; title=&quot;新手开发中遇到的问题,在这里总结一下,方便以后排查&quot;&gt;&lt;/
       
     
     </summary>
@@ -409,6 +387,28 @@
     
     
       <category term="笔记" scheme="https://tongfangyuan.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模板文件</title>
+    <link href="https://tongfangyuan.github.io/2016/07/03/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6/"/>
+    <id>https://tongfangyuan.github.io/2016/07/03/模板文件/</id>
+    <published>2016-07-03T02:54:35.000Z</published>
+    <updated>2018-07-07T03:28:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一个模板文件</p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一个模板文件&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
+    
+    
+      <category term="模板" scheme="https://tongfangyuan.github.io/tags/%E6%A8%A1%E6%9D%BF/"/>
     
   </entry>
   
