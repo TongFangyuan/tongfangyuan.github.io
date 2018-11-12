@@ -102,20 +102,18 @@
 
 
 
-  <meta name="description" content="新手开发中遇到的问题,在这里总结一下,方便以后排查 去掉button点击后的蓝框123button &amp;#123;outline:none;&amp;#125; 去掉button边框阴影123button &amp;#123;border:none;&amp;#125; padding、margin、border 图解">
-<meta name="keywords" content="CSS">
+  <meta name="description" content="开发随记，方便自己查阅。 运用正则表达式进行纯中文数字校验。">
+<meta name="keywords" content="笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初学前端CSS小记一">
-<meta property="og:url" content="https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/index.html">
+<meta property="og:title" content="iOS 正则表达式的运用">
+<meta property="og:url" content="https://tongfangyuan.github.io/2018/10/26/iOS 正则表达式运用记录/index.html">
 <meta property="og:site_name" content="Tong">
-<meta property="og:description" content="新手开发中遇到的问题,在这里总结一下,方便以后排查 去掉button点击后的蓝框123button &amp;#123;outline:none;&amp;#125; 去掉button边框阴影123button &amp;#123;border:none;&amp;#125; padding、margin、border 图解">
+<meta property="og:description" content="开发随记，方便自己查阅。 运用正则表达式进行纯中文数字校验。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://i.stack.imgur.com/D9nU6.gif">
-<meta property="og:updated_time" content="2018-07-04T13:38:21.000Z">
+<meta property="og:updated_time" content="2018-11-12T09:01:27.053Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初学前端CSS小记一">
-<meta name="twitter:description" content="新手开发中遇到的问题,在这里总结一下,方便以后排查 去掉button点击后的蓝框123button &amp;#123;outline:none;&amp;#125; 去掉button边框阴影123button &amp;#123;border:none;&amp;#125; padding、margin、border 图解">
-<meta name="twitter:image" content="https://i.stack.imgur.com/D9nU6.gif">
+<meta name="twitter:title" content="iOS 正则表达式的运用">
+<meta name="twitter:description" content="开发随记，方便自己查阅。 运用正则表达式进行纯中文数字校验。">
 
 
 
@@ -124,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/"/>
+  <link rel="canonical" href="https://tongfangyuan.github.io/2018/10/26/iOS 正则表达式运用记录/"/>
 
 
 
@@ -134,7 +132,7 @@
   };
 </script>
 
-  <title>初学前端CSS小记一 | Tong</title>
+  <title>iOS 正则表达式的运用 | Tong</title>
   
 
 
@@ -282,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/">
+    <link itemprop="mainEntityOfPage" href="https://tongfangyuan.github.io/2018/10/26/iOS 正则表达式运用记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tong">
@@ -299,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">初学前端CSS小记一
+          <h1 class="post-title" itemprop="name headline">iOS 正则表达式的运用
               
             
           </h1>
@@ -324,7 +322,7 @@
                 
               
 
-              <time title="Created: 2018-05-17 10:32:50" itemprop="dateCreated datePublished" datetime="2018-05-17T10:32:50+08:00">2018-05-17</time>
+              <time title="Created: 2018-10-26 11:45:25" itemprop="dateCreated datePublished" datetime="2018-10-26T11:45:25+08:00">2018-10-26</time>
             
 
             
@@ -341,7 +339,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-04 21:38:21" itemprop="dateModified" datetime="2018-07-04T21:38:21+08:00">2018-07-04</time>
+                <time title="Modified: 2018-11-12 17:01:27" itemprop="dateModified" datetime="2018-11-12T17:01:27+08:00">2018-11-12</time>
               
             
           </span>
@@ -358,7 +356,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
 
                 
                 
@@ -373,9 +371,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/05/17/初学前端之CSS小记一/#comments" itemprop="discussionUrl">
+                <a href="/2018/10/26/iOS 正则表达式运用记录/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/17/初学前端之CSS小记一/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/10/26/iOS 正则表达式运用记录/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -403,11 +401,23 @@
       
 
       
-        <blockquote>
-<h3 id="新手开发中遇到的问题-在这里总结一下-方便以后排查"><a href="#新手开发中遇到的问题-在这里总结一下-方便以后排查" class="headerlink" title="新手开发中遇到的问题,在这里总结一下,方便以后排查"></a>新手开发中遇到的问题,在这里总结一下,方便以后排查</h3></blockquote>
-<h6 id="去掉button点击后的蓝框"><a href="#去掉button点击后的蓝框" class="headerlink" title="去掉button点击后的蓝框"></a>去掉<code>button</code>点击后的蓝框</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">outline:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="去掉button边框阴影"><a href="#去掉button边框阴影" class="headerlink" title="去掉button边框阴影"></a>去掉<code>button</code>边框阴影</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">border:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="padding、margin、border-图解"><a href="#padding、margin、border-图解" class="headerlink" title="padding、margin、border 图解"></a>padding、margin、border 图解</h6><p><img src="https://i.stack.imgur.com/D9nU6.gif" alt="image"></p>
+        <p>开发随记，方便自己查阅。</p>
+<p>运用正则表达式进行纯中文数字校验。</p>
+<a id="more"></a>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近项目接入阿里天猫精灵语音交互平台，遇到个问题，对app说打电话给10086，云端返回<code>幺零零八六</code>，导致客户端无法正确识别，服务端能力不全，所以先在客户端解决，解决方法就是用正则表达式进行判断，然后转对应的阿拉伯数字，写完顺便记录下来方便以后查看。</p>
+<h2 id="纯中文数字校验"><a href="#纯中文数字校验" class="headerlink" title="纯中文数字校验"></a>纯中文数字校验</h2><p>简单，就两步：</p>
+<ol>
+<li>匹配规则</li>
+<li>校验字符串</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">BOOL</span>)isCNNumer:(<span class="built_in">NSString</span> *)checkedNumString</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">NSString</span> *numer2 = <span class="string">@"^[一壹幺二贰两三叁四肆五伍六陆七柒拐八捌九玖勾〇零洞]+$"</span>;</span><br><span class="line"><span class="built_in">NSPredicate</span> *chNumberPre = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF MATCHES %@"</span>,numer2];</span><br><span class="line"><span class="keyword">return</span> [chNumberPre evaluateWithObject:checkedNumString]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.jianshu.com/p/ea10003d224a" target="_blank" rel="noopener">iOS正则表达式</a></li>
+<li><a href="https://my.oschina.net/u/1245365/blog/376517" target="_blank" rel="noopener">正则表达式在iOS中的运用</a></li>
+<li><a href="https://www.jianshu.com/p/13774c6bbdaa" target="_blank" rel="noopener">常用的正则表达式</a></li>
+<li><a href="https://www.jianshu.com/p/a3dd72eadfa3" target="_blank" rel="noopener">iOS开发——正则表达式验证手机号、密码</a></li>
+<li><a href="https://c.runoob.com/front-end/854" target="_blank" rel="noopener">正则表达式在线测试</a></li>
+</ul>
 
       
     </div>
@@ -428,7 +438,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CSS/" rel="tag"># CSS</a>
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
           
         </div>
       
@@ -441,8 +451,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/15/iOS 实现语音边录边传/" rel="next" title="iOS 实现语音边录边传">
-                <i class="fa fa-chevron-left"></i> iOS 实现语音边录边传
+              <a href="/2018/08/16/iOS资料整理（8月）/" rel="next" title="iOS资料整理（8月）">
+                <i class="fa fa-chevron-left"></i> iOS资料整理（8月）
               </a>
             
           </div>
@@ -450,10 +460,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/17/初学前端之CSS常用的几种选择器/" rel="prev" title="初学前端之CSS常用的几种选择器">
-                初学前端之CSS常用的几种选择器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -646,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#新手开发中遇到的问题-在这里总结一下-方便以后排查"><span class="nav-number">1.</span> <span class="nav-text">新手开发中遇到的问题,在这里总结一下,方便以后排查</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#去掉button点击后的蓝框"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">去掉button点击后的蓝框</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#去掉button边框阴影"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">去掉button边框阴影</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#padding、margin、border-图解"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">padding、margin、border 图解</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纯中文数字校验"><span class="nav-number">2.</span> <span class="nav-text">纯中文数字校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -800,9 +806,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/';
-        this.page.identifier = '2018/05/17/初学前端之CSS小记一/';
-        this.page.title = '初学前端CSS小记一';
+        this.page.url = 'https://tongfangyuan.github.io/2018/10/26/iOS 正则表达式运用记录/';
+        this.page.identifier = '2018/10/26/iOS 正则表达式运用记录/';
+        this.page.title = 'iOS 正则表达式的运用';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');

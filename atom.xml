@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tongfangyuan.github.io/"/>
-  <updated>2018-07-04T13:38:21.000Z</updated>
+  <updated>2018-11-12T09:01:27.053Z</updated>
   <id>https://tongfangyuan.github.io/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS 正则表达式的运用</title>
+    <link href="https://tongfangyuan.github.io/2018/10/26/iOS%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BF%90%E7%94%A8%E8%AE%B0%E5%BD%95/"/>
+    <id>https://tongfangyuan.github.io/2018/10/26/iOS 正则表达式运用记录/</id>
+    <published>2018-10-26T03:45:25.000Z</published>
+    <updated>2018-11-12T09:01:27.053Z</updated>
+    
+    <content type="html"><![CDATA[<p>开发随记，方便自己查阅。</p><p>运用正则表达式进行纯中文数字校验。</p><a id="more"></a><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近项目接入阿里天猫精灵语音交互平台，遇到个问题，对app说打电话给10086，云端返回<code>幺零零八六</code>，导致客户端无法正确识别，服务端能力不全，所以先在客户端解决，解决方法就是用正则表达式进行判断，然后转对应的阿拉伯数字，写完顺便记录下来方便以后查看。</p><h2 id="纯中文数字校验"><a href="#纯中文数字校验" class="headerlink" title="纯中文数字校验"></a>纯中文数字校验</h2><p>简单，就两步：</p><ol><li>匹配规则</li><li>校验字符串</li></ol><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">BOOL</span>)isCNNumer:(<span class="built_in">NSString</span> *)checkedNumString</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">NSString</span> *numer2 = <span class="string">@"^[一壹幺二贰两三叁四肆五伍六陆七柒拐八捌九玖勾〇零洞]+$"</span>;</span><br><span class="line"><span class="built_in">NSPredicate</span> *chNumberPre = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"SELF MATCHES %@"</span>,numer2];</span><br><span class="line"><span class="keyword">return</span> [chNumberPre evaluateWithObject:checkedNumString]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://www.jianshu.com/p/ea10003d224a" target="_blank" rel="noopener">iOS正则表达式</a></li><li><a href="https://my.oschina.net/u/1245365/blog/376517" target="_blank" rel="noopener">正则表达式在iOS中的运用</a></li><li><a href="https://www.jianshu.com/p/13774c6bbdaa" target="_blank" rel="noopener">常用的正则表达式</a></li><li><a href="https://www.jianshu.com/p/a3dd72eadfa3" target="_blank" rel="noopener">iOS开发——正则表达式验证手机号、密码</a></li><li><a href="https://c.runoob.com/front-end/854" target="_blank" rel="noopener">正则表达式在线测试</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;开发随记，方便自己查阅。&lt;/p&gt;
+&lt;p&gt;运用正则表达式进行纯中文数字校验。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
+    
+    
+      <category term="笔记" scheme="https://tongfangyuan.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS资料整理（8月）</title>
+    <link href="https://tongfangyuan.github.io/2018/08/16/iOS%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86%EF%BC%888%E6%9C%88%EF%BC%89/"/>
+    <id>https://tongfangyuan.github.io/2018/08/16/iOS资料整理（8月）/</id>
+    <published>2018-08-16T02:52:45.000Z</published>
+    <updated>2018-11-12T09:01:27.054Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近一段时间，蓝牙打印机项目中搜集到的一些资料（不仅限于蓝牙打印机）。</p><a id="more"></a><h2 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h2><ul><li><a href="https://everettjf.github.io/2018/01/15/ios-app-reverse-engineering-stuff/" target="_blank" rel="noopener">iOS应用逆向工程资料汇总</a></li><li><a href="http://iosre.com/t/topic/4680" target="_blank" rel="noopener">学习资料资源入口整理（一起整理啦）</a></li><li><a href="https://web.securityinnovation.com/hubfs/iOS%20Hacking%20Guide.pdf" target="_blank" rel="noopener">一本挺“新”的入门书 Hacking iOS Applications</a></li></ul><h2 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h2><ul><li><a href="https://nshipster.cn/nsundomanager/" target="_blank" rel="noopener">撤销/重做功能</a></li><li><a href="https://www.jianshu.com/p/c2caa84405b0" target="_blank" rel="noopener">iOS富文本</a></li><li><a href="https://www.jianshu.com/p/bbfe7bd282f1" target="_blank" rel="noopener">富文本AttributedString的总结（一）</a></li><li><a href="https://stackoverflow.com/questions/754824/get-an-object-properties-list-in-objective-c" target="_blank" rel="noopener">Runtime获取类的所有属性值</a></li><li><a href="https://blog.csdn.net/typename/article/details/6730183" target="_blank" rel="noopener">NSString 与C++ string字符串的互转</a></li><li><a href="https://www.jianshu.com/p/8609257ed49e" target="_blank" rel="noopener">ios设置黑体/加粗/斜体/Attributes</a></li><li><a href="https://www.jianshu.com/p/b33bdbccfa57" target="_blank" rel="noopener">利用runtime实现NSCopying</a></li><li><a href="https://www.jianshu.com/p/beefa2da05b5" target="_blank" rel="noopener">@synthesize的妙用</a></li><li><a href="https://stackoverflow.com/questions/8460119/how-to-resize-uiview-by-dragging-from-its-edges" target="_blank" rel="noopener">Resize UIView by dragging from its edges</a></li><li><a href="https://stackoverflow.com/questions/24989410/uipangesturerecognizer-offset-view-under-finger" target="_blank" rel="noopener">UIPanGestureRecognizer: Offset view under finger</a></li><li><a href="https://stackoverflow.com/questions/2658738/the-simplest-way-to-resize-an-uiimage" target="_blank" rel="noopener">The simplest way to resize an UIImage</a></li><li><a href="https://www.jianshu.com/p/c962403cae65" target="_blank" rel="noopener">图片二值化和黑白(灰度)处理</a></li><li><a href="http://www.voidcn.com/article/p-tcobghxu-bpr.html" target="_blank" rel="noopener">彩色图片置灰，灰度图片</a></li><li><a href="https://cdn2.jianshu.io/p/3e2cca585ccc" target="_blank" rel="noopener">CIFilter_看了这个，你就可以打造自己的美图秀秀</a></li><li><a href="https://stackoverflow.com/questions/10030631/what-is-the-best-core-image-filter-to-produce-black-and-white-effects?rq=1" target="_blank" rel="noopener">What is the best Core Image filter to produce black and white effects?</a></li><li><a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185-CH1-TPXREF101" target="_blank" rel="noopener">Core Image Programming Guide</a></li><li><a href="https://www.cnblogs.com/fengmin/p/5586729.html" target="_blank" rel="noopener">iOS开发之滤镜的使用技巧（CoreImage）</a></li><li><a href="https://blog.csdn.net/cjh965063777/article/details/49096383" target="_blank" rel="noopener">iOS 对Image图片本身进行旋转0，90，180，270</a></li><li><a href="https://stackoverflow.com/questions/19523487/find-frame-coordinates-after-uiview-transform-is-applied-cgaffinetransform" target="_blank" rel="noopener">Find Frame Coordinates After UIView Transform is Applied (CGAffineTransform)</a></li><li><a href="https://stackoverflow.com/questions/38286527/drag-behaviour-wrong-after-uiview-transformation" target="_blank" rel="noopener">Drag behaviour wrong after UIView transformation</a></li><li><a href="https://stackoverflow.com/questions/5802830/weird-behavior-of-uiview-frame-after-rotation-in-iphone" target="_blank" rel="noopener">Weird behavior of UIView frame after rotation in iPhone</a></li></ul><h2 id="条形码、二维码生成"><a href="#条形码、二维码生成" class="headerlink" title="条形码、二维码生成"></a>条形码、二维码生成</h2><ul><li><a href="https://www.jianshu.com/p/f1e1bf4aefb4" target="_blank" rel="noopener">使用iOS原生的CIFilter生成二维码和条形码</a></li><li><a href="https://www.jianshu.com/p/70931bbe63c6" target="_blank" rel="noopener">iOS生成高清二维码</a></li><li><a href="https://www.jianshu.com/p/c38058ce8ffb" target="_blank" rel="noopener">iOS通过CIFilter生成条形码和二维码(Swift3.0)</a></li><li><a href="https://www.jianshu.com/p/43c8e6a1702f" target="_blank" rel="noopener">iOS 生成二维码图片模糊不清问题</a></li><li><a href="https://github.com/TheLevelUp/ZXingObjC" target="_blank" rel="noopener">第三方库ZXingObjC</a></li></ul><h2 id="蓝牙打印机"><a href="#蓝牙打印机" class="headerlink" title="蓝牙打印机"></a>蓝牙打印机</h2><ul><li><a href="https://www.zebra.com/content/dam/zebra/manuals/zh-cn/printers/proman-cpcl-061-zh-cn.pdf" target="_blank" rel="noopener">移动打印系统 CPCL 编程手册</a></li><li><a href="https://www.jianshu.com/p/d8df9d01aae8" target="_blank" rel="noopener">iOS 关于CPCL指令打印图片的解释说明</a></li><li><a href="https://github.com/Zebra/LinkOS-iOS-Samples" target="_blank" rel="noopener">Zebra/LinkOS-iOS-Samples</a></li><li><a href="https://blog.csdn.net/iosYangming/article/details/80270469" target="_blank" rel="noopener">iOS 连接打印机 ESC/POS 指令打印 打印图片二维码</a></li><li><a href="https://github.com/EricADockery/ZebraPrinterDemo" target="_blank" rel="noopener">ZebraPrinterDemo</a></li><li><a href="https://github.com/KouMeanSun/BLEPrinter_CPCL_Demo" target="_blank" rel="noopener">BLEPrinter_CPCL_Demo</a></li></ul><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><ul><li><a href="https://blog.devzeng.com/blog/using-custom-font-in-ios.html" target="_blank" rel="noopener">在iOS开发中使用自定义字体</a></li><li><a href="https://www.jianshu.com/p/e29c37639d81" target="_blank" rel="noopener">IOS导入TFF 字体文件使用自定义字体</a></li><li><a href="https://developer.apple.com/library/archive/samplecode/DownloadFont/Introduction/Intro.html" target="_blank" rel="noopener">官方字体下载Demo</a></li><li><a href="https://blog.csdn.net/shengdaVolleyball/article/details/52130992" target="_blank" rel="noopener">iOS字体号数与像素对应关系</a></li></ul><h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><ul><li><a href="https://www.jianshu.com/p/c7bfaf766abb" target="_blank" rel="noopener">iOS 给dictionary字典排序</a></li></ul><h2 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h2><ul><li><a href="http://www.iosxxx.com/blog/2015-08-29-iosyi-chang-bu-huo.html" target="_blank" rel="noopener">iOS异常捕获</a></li><li><a href="https://www.cnblogs.com/GarveyCalvin/p/4182861.html" target="_blank" rel="noopener">iOS捕获异常，常用的异常处理方法</a></li><li><a href="http://xgfe.github.io/2017/03/23/lrdcq/ios-crash-catch-and-analyze/" target="_blank" rel="noopener">iOS Crash栈的捕获和分析</a></li></ul><h2 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h2><ul><li><a href="https://www.jianshu.com/p/b8406ff1e2f1" target="_blank" rel="noopener">Cocopods 遇到You don’t have write permissions for the /usr/bin directory.</a></li><li><a href="https://juejin.im/post/5a32900a6fb9a045132aba3c" target="_blank" rel="noopener">解决Cocoapods贼慢问题</a></li><li><a href="https://www.cnblogs.com/yiqiedejuanlian/p/3698788.html" target="_blank" rel="noopener">CocoaPods pod install/pod update更新慢的问题</a></li></ul><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul><li><a href="https://www.jianshu.com/p/df4e92966dc0" target="_blank" rel="noopener">设置启动图片</a></li><li><a href="https://www.kancloud.cn/melissashu/ios/562301" target="_blank" rel="noopener">iPhone尺寸· iOS 开发笔记</a></li><li><a href="http://www.beyondabel.com/blog/2014/01/10/uisegmentedcontrol/" target="_blank" rel="noopener">iOS组件之UISegmentedControl详解</a></li><li><a href="https://github.com/chenliangloveyou/EasyNavigation" target="_blank" rel="noopener">一款超级简单的导航条管理工具。完全自定义导航条</a></li><li><a href="https://github.com/ChenYilong/CYLTabBarController" target="_blank" rel="noopener">【中国特色 TabBar】最低只需传两个数组即可完成主流App框架搭建【iPhoneX supported】</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近一段时间，蓝牙打印机项目中搜集到的一些资料（不仅限于蓝牙打印机）。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
+    
+    
+      <category term="资料" scheme="https://tongfangyuan.github.io/tags/%E8%B5%84%E6%96%99/"/>
+    
+  </entry>
   
   <entry>
     <title>利用 Class-dump 反编译第三方ipa</title>
