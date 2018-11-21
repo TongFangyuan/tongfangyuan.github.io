@@ -114,12 +114,14 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9f473525gy1fxg0n8tqh0j20i302xq3d.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9f473525gy1fxg0ruyfdvj20sd0czjxh.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9f473525gy1fxg0u5gjbtj20ku112aan.jpg">
-<meta property="og:updated_time" content="2018-11-21T14:06:44.162Z">
+<meta property="og:updated_time" content="2018-11-21T14:09:53.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 使用第三方字体">
 <meta name="twitter:description" content="最近做项目有要求使用第三方字体的功能，查了些资料，完成需求后便整理记录一下。">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/9f473525gy1fxg0lz0mzhj207e04lq4o.jpg">
 
+
+  
 
 
   <link rel="alternate" href="/atom.xml" title="Tong" type="application/atom+xml" />
@@ -327,7 +329,7 @@
                 
               
 
-              <time title="Created: 2018-11-21 22:01:15 / Modified: 22:06:44" itemprop="dateCreated datePublished" datetime="2018-11-21T22:01:15+08:00">2018-11-21</time>
+              <time title="Created: 2018-11-21 22:01:15 / Modified: 22:09:53" itemprop="dateCreated datePublished" datetime="2018-11-21T22:01:15+08:00">2018-11-21</time>
             
 
             
@@ -407,7 +409,7 @@
 <h4 id="在info-plist文件中添加Fonts-provided-by-application字段并添加支持的第三方字体"><a href="#在info-plist文件中添加Fonts-provided-by-application字段并添加支持的第三方字体" class="headerlink" title="在info.plist文件中添加Fonts provided by application字段并添加支持的第三方字体"></a>在<code>info.plist</code>文件中添加<code>Fonts provided by application</code>字段并添加支持的第三方字体</h4><p><img src="http://ww1.sinaimg.cn/large/9f473525gy1fxg0n8tqh0j20i302xq3d.jpg" alt=""></p>
 <p>也可以代码的形式添加<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">key</span>&gt;UIAppFonts&lt;/<span class="built_in">key</span>&gt;</span><br><span class="line">&lt;<span class="built_in">array</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">string</span>&gt;CHANTAL.TTF&lt;/<span class="built_in">string</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">string</span>&gt;filsonsoft-book.otf&lt;/<span class="built_in">string</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">string</span>&gt;filsonsoft-light.otf&lt;/<span class="built_in">string</span>&gt;</span><br><span class="line">    &lt;<span class="built_in">string</span>&gt;<span class="built_in">sf</span>-pro-text_regular.ttf&lt;/<span class="built_in">string</span>&gt;</span><br><span class="line">&lt;/<span class="built_in">array</span>&gt;</span><br></pre></td></tr></table></figure></p>
 <h4 id="控制台打印字体"><a href="#控制台打印字体" class="headerlink" title="控制台打印字体"></a>控制台打印字体</h4><p><img src="http://ww1.sinaimg.cn/large/9f473525gy1fxg0ruyfdvj20sd0czjxh.jpg" alt=""><br>可以看见系统已经支持<code>CHANTAL-Normal</code>字体了</p>
-<h4 id="使用第三方字体"><a href="#使用第三方字体" class="headerlink" title="使用第三方字体"></a>使用第三方字体</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.label1.font = [<span class="built_in">UIFont</span> chantalFontOfSize:<span class="number">16</span>];</span><br><span class="line"><span class="keyword">self</span>.label2.font = [<span class="built_in">UIFont</span> filsonSoftLightFontOfSize:<span class="number">16</span>];</span><br><span class="line"><span class="keyword">self</span>.label3.font = [<span class="built_in">UIFont</span> filsonSoftBookFontOfSize:<span class="number">16.</span>f];</span><br><span class="line"><span class="keyword">self</span>.label4.font = [<span class="built_in">UIFont</span> sfProTextRegularFontOfSize:<span class="number">16.</span>f];</span><br></pre></td></tr></table></figure>
+<h4 id="使用第三方字体"><a href="#使用第三方字体" class="headerlink" title="使用第三方字体"></a>使用第三方字体</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.label1.font = [UIFont <span class="string">fontWithName:</span>@<span class="string">"CHANTAL-Normal"</span> <span class="string">size:</span><span class="number">16</span>];</span><br><span class="line">self.label2.font = [UIFont <span class="string">fontWithName:</span>@<span class="string">"FilsonSoft-Light"</span> <span class="string">size:</span><span class="number">116</span>];</span><br><span class="line">self.label3.font = [UIFont <span class="string">fontWithName:</span>@<span class="string">"FilsonSoftBook"</span> <span class="string">size:</span><span class="number">16</span>];</span><br><span class="line">self.label4.font = [UIFont <span class="string">fontWithName:</span>@<span class="string">"SFProText-Regular"</span> <span class="string">size:</span><span class="number">16</span>];</span><br></pre></td></tr></table></figure>
 <p>显示效果<br><img src="http://ww1.sinaimg.cn/large/9f473525gy1fxg0u5gjbtj20ku112aan.jpg" alt=""></p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
 <li><a href="https://github.com/TongFangyuan/Demos/tree/master/ThirdFontDemo" target="_blank" rel="noopener">本文Demo</a></li>
