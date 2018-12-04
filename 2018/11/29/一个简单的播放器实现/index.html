@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近有个简单播放器的需求需要实现，公司其他项目本身已有播放器实现但是业务逻辑不满足现有需求，所以参照原有模块并结合相关资料自己实现了一个简单播放器，该播放器是基于AVPlayer实现的。">
+<meta name="keywords" content="笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个简单的播放器实现">
+<meta property="og:url" content="https://tongfangyuan.github.io/2018/11/29/一个简单的播放器实现/index.html">
+<meta property="og:site_name" content="开发随记">
+<meta property="og:description" content="最近有个简单播放器的需求需要实现，公司其他项目本身已有播放器实现但是业务逻辑不满足现有需求，所以参照原有模块并结合相关资料自己实现了一个简单播放器，该播放器是基于AVPlayer实现的。">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9f473525gy1fxoprqatr7j20r50ci0u2.jpg">
+<meta property="og:updated_time" content="2018-12-04T06:14:52.904Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个简单的播放器实现">
+<meta name="twitter:description" content="最近有个简单播放器的需求需要实现，公司其他项目本身已有播放器实现但是业务逻辑不满足现有需求，所以参照原有模块并结合相关资料自己实现了一个简单播放器，该播放器是基于AVPlayer实现的。">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/9f473525gy1fxoprqatr7j20r50ci0u2.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="开发随记" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="https://tongfangyuan.github.io/2018/11/29/一个简单的播放器实现/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>一个简单的播放器实现 | 开发随记</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">开发随记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录工作、生活</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://tongfangyuan.github.io/2018/11/29/一个简单的播放器实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开发随记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个简单的播放器实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-11-29 15:00:27" itemprop="dateCreated datePublished" datetime="2018-11-29T15:00:27+08:00">2018-11-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-04 14:14:52" itemprop="dateModified" datetime="2018-12-04T14:14:52+08:00">2018-12-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/29/一个简单的播放器实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/29/一个简单的播放器实现/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>最近有个简单播放器的需求需要实现，公司其他项目本身已有播放器实现但是业务逻辑不满足现有需求，所以参照原有模块并结合相关资料自己实现了一个简单播放器，该播放器是基于<code>AVPlayer</code>实现的。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="播放器功能介绍"><a href="#播放器功能介绍" class="headerlink" title="播放器功能介绍"></a>播放器功能介绍</h4><ul>
+<li>单例实现</li>
+<li>播放、暂停、切歌、缓冲处理、播放进度实时更新</li>
+<li>后台持续播放</li>
+<li>音频中断处理</li>
+</ul>
+<h4 id="协议代理"><a href="#协议代理" class="headerlink" title="协议代理"></a>协议代理</h4><h5 id="播放器功能协议TTPlayerProtocol"><a href="#播放器功能协议TTPlayerProtocol" class="headerlink" title="播放器功能协议TTPlayerProtocol"></a>播放器功能协议<code>TTPlayerProtocol</code></h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">TTPlayerProtocol</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) playMusicWithInfo:(<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;)model;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) enterPlayQueueWithSingle:(<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;)model;</span><br><span class="line">- (<span class="keyword">void</span>) enterPlayQueueWithArray:(<span class="built_in">NSArray</span>&lt;<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;&gt; *)models;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) replaceAllQueueWithSingle:(<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;)model;</span><br><span class="line">- (<span class="keyword">void</span>) replaceAllQueueWithArray:(<span class="built_in">NSArray</span>&lt;<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;&gt; *)models;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>) isPlaying;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>) isNextExist;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>) isPreExist;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) next;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) pre;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) pause;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) stop;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) play;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) continuePlay;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">double</span>) currentSecs;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">double</span>) durationSecs;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h5 id="播放器状态代理TTAudioPlayerStatusDelegate"><a href="#播放器状态代理TTAudioPlayerStatusDelegate" class="headerlink" title="播放器状态代理TTAudioPlayerStatusDelegate"></a>播放器状态代理<code>TTAudioPlayerStatusDelegate</code></h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">TTAudioPlayerStatusDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerPlayStart;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerPlayFinished;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerPause;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerStoped;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerPlayError:(<span class="built_in">NSError</span> *)error;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerSeekPosition:(<span class="keyword">double</span>)progress;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerUpdateProgress:(<span class="keyword">double</span>)progress;</span><br><span class="line">- (<span class="keyword">void</span>)ttAduioPlayerMusicInfoUpdate:(<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;)musicInfo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h5 id="数据模型协议-TTMusicModelProtocol"><a href="#数据模型协议-TTMusicModelProtocol" class="headerlink" title="数据模型协议 TTMusicModelProtocol"></a>数据模型协议 <code>TTMusicModelProtocol</code></h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">TTMusicModelProtocol</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *url;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *cover;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *author;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *album;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h4 id="类介绍"><a href="#类介绍" class="headerlink" title="类介绍"></a>类介绍</h4><h5 id="TTAudioPlayer"><a href="#TTAudioPlayer" class="headerlink" title="TTAudioPlayer"></a><code>TTAudioPlayer</code></h5><p>播放器对象，实现了<code>TTPlayerProtocol</code>协议<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TTAudioPlayer</span> : <span class="title">NSObject</span>&lt;<span class="title">TTPlayerProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">id</span>&lt;TTAudioPlayerStatusDelegate&gt; delegate;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)shareInstance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="TTMusicModel"><a href="#TTMusicModel" class="headerlink" title="TTMusicModel"></a><code>TTMusicModel</code></h4><p>音乐数据模型，遵守<code>TTMusicModelProtocol</code>协议，可扩展</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TTMusicModel</span> : <span class="title">NSObject</span>&lt;<span class="title">TTMusicModelProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h4 id="问题与功能实现细节"><a href="#问题与功能实现细节" class="headerlink" title="问题与功能实现细节"></a>问题与功能实现细节</h4><h5 id="设置播放器在后台，锁屏，静音模式下都可以播放"><a href="#设置播放器在后台，锁屏，静音模式下都可以播放" class="headerlink" title="设置播放器在后台，锁屏，静音模式下都可以播放"></a>设置播放器在后台，锁屏，静音模式下都可以播放</h5><h6 id="1-在后台模式中打开音频播放模式"><a href="#1-在后台模式中打开音频播放模式" class="headerlink" title="1.在后台模式中打开音频播放模式"></a>1.在后台模式中打开音频播放模式</h6><p><strong>Targets–&gt;Capabilities–&gt;BackgroundModes–&gt;ON</strong></p>
+<p><strong>勾选 Audio,Airplay,and Picture in Picture</strong><br><img src="http://ww1.sinaimg.cn/large/9f473525gy1fxoprqatr7j20r50ci0u2.jpg" alt=""></p>
+<h6 id="2-设置音频类别"><a href="#2-设置音频类别" class="headerlink" title="2.设置音频类别"></a>2.设置音频类别</h6><p>这段代码我写在播放器初始化的时候<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">AVAudioSession</span> sharedInstance] setCategory:<span class="built_in">AVAudioSessionCategoryPlayback</span> error:<span class="literal">nil</span>];</span><br><span class="line">[[<span class="built_in">AVAudioSession</span> sharedInstance] setActive:<span class="literal">YES</span> error:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure></p>
+<h6 id="3-开启后台任务"><a href="#3-开启后台任务" class="headerlink" title="3.开启后台任务"></a>3.开启后台任务</h6><p>前面两步做完之后，app进入后台音频是可以继续播放，但是播完一首之后，后面的就不会播放了，这里开启后台任务就好了</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> ()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIBackgroundTaskIdentifier</span> bgTask;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>进入后台后开启任务<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line"></span><br><span class="line">    [[<span class="built_in">UIApplication</span> sharedApplication] beginReceivingRemoteControlEvents];</span><br><span class="line">    bgTask = [application beginBackgroundTaskWithExpirationHandler:^&#123;</span><br><span class="line">    [application endBackgroundTask:<span class="keyword">self</span>-&gt;bgTask];</span><br><span class="line">    <span class="keyword">self</span>-&gt;bgTask = <span class="built_in">UIBackgroundTaskInvalid</span>;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>进入前台，结束后台任务<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)applicationWillEnterForeground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="keyword">if</span> (bgTask != <span class="built_in">UIBackgroundTaskInvalid</span>) &#123;</span><br><span class="line">    [application endBackgroundTask:bgTask];</span><br><span class="line">    bgTask = <span class="built_in">UIBackgroundTaskInvalid</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="处理中断事件"><a href="#处理中断事件" class="headerlink" title="处理中断事件"></a>处理中断事件</h5><p>监听中断通知</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(handleInterreptionNotification:) name:<span class="built_in">AVAudioSessionInterruptionNotification</span> object:[<span class="built_in">AVAudioSession</span> sharedInstance]];</span><br></pre></td></tr></table></figure>
+<p>中断处理</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)handleInterreptionNotification:(<span class="built_in">NSNotification</span> *)notification &#123;</span><br><span class="line">    <span class="keyword">if</span> ([notification.userInfo count] == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">AVAudioSessionInterruptionTypeBegan</span> == [notification.userInfo[<span class="built_in">AVAudioSessionInterruptionTypeKey</span>] intValue]) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"中断，暂停音乐"</span>);</span><br><span class="line">        [<span class="keyword">self</span> pause];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">AVAudioSessionInterruptionTypeEnded</span> == [notification.userInfo[<span class="built_in">AVAudioSessionInterruptionTypeKey</span>] intValue]) &#123;</span><br><span class="line">        <span class="built_in">NSError</span> *error,*activeError;</span><br><span class="line">        [[<span class="built_in">AVAudioSession</span> sharedInstance] setCategory:<span class="built_in">AVAudioSessionCategoryPlayback</span> withOptions:<span class="number">0</span> error:&amp;error];</span><br><span class="line">        [[<span class="built_in">AVAudioSession</span> sharedInstance] setActive:<span class="literal">YES</span> error:&amp;activeError];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"中断结束，设置类别失败:%@"</span>,error);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (activeError) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"中断结束，获取音频焦点失败:%@"</span>,activeError);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"中断结束，恢复音乐播放"</span>);</span><br><span class="line">            [<span class="keyword">self</span> continuePlay];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>#### </p>
+<ul>
+<li><a href="https://github.com/TongFangyuan/Demos/tree/master/PlayerDemo" target="_blank" rel="noopener">下载Demo</a></li>
+<li><a href="https://stackoverflow.com/questions/10429204/how-to-handle-background-audio-playing-while-ios-device-is-locked-or-on-another" target="_blank" rel="noopener">How to handle background audio playing while iOS device is locked or on another application?</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html" target="_blank" rel="noopener">在退出时启动后台任务</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionCategoriesandModes/AudioSessionCategoriesandModes.html" target="_blank" rel="noopener">音频会话类别和模式</a></li>
+<li><a href="https://www.cnblogs.com/ziyi--caolu/p/5673160.html" target="_blank" rel="noopener">音视频的缓冲处理</a></li>
+<li><a href="https://stackoverflow.com/questions/5655864/check-play-state-of-avplayer" target="_blank" rel="noopener">判断播放器是否在播放</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /" rel="next" title="模板文件">
+                <i class="fa fa-chevron-left"></i> 模板文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#播放器功能介绍"><span class="nav-number">1.</span> <span class="nav-text">播放器功能介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协议代理"><span class="nav-number">2.</span> <span class="nav-text">协议代理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#播放器功能协议TTPlayerProtocol"><span class="nav-number">2.1.</span> <span class="nav-text">播放器功能协议TTPlayerProtocol</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#播放器状态代理TTAudioPlayerStatusDelegate"><span class="nav-number">2.2.</span> <span class="nav-text">播放器状态代理TTAudioPlayerStatusDelegate</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据模型协议-TTMusicModelProtocol"><span class="nav-number">2.3.</span> <span class="nav-text">数据模型协议 TTMusicModelProtocol</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类介绍"><span class="nav-number">3.</span> <span class="nav-text">类介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TTAudioPlayer"><span class="nav-number">3.1.</span> <span class="nav-text">TTAudioPlayer</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TTMusicModel"><span class="nav-number">4.</span> <span class="nav-text">TTMusicModel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题与功能实现细节"><span class="nav-number">5.</span> <span class="nav-text">问题与功能实现细节</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设置播放器在后台，锁屏，静音模式下都可以播放"><span class="nav-number">5.1.</span> <span class="nav-text">设置播放器在后台，锁屏，静音模式下都可以播放</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-在后台模式中打开音频播放模式"><span class="nav-number">5.1.1.</span> <span class="nav-text">1.在后台模式中打开音频播放模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-设置音频类别"><span class="nav-number">5.1.2.</span> <span class="nav-text">2.设置音频类别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-开启后台任务"><span class="nav-number">5.1.3.</span> <span class="nav-text">3.开启后台任务</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#处理中断事件"><span class="nav-number">5.2.</span> <span class="nav-text">处理中断事件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tong</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://tong.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://tongfangyuan.github.io/2018/11/29/一个简单的播放器实现/';
+        this.page.identifier = '2018/11/29/一个简单的播放器实现/';
+        this.page.title = '一个简单的播放器实现';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://tong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        $(function () {
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          if (offsetTop <= 0) {
+            // load directly when there's no a scrollbar
+            loadComments();
+          } else {
+            $(window).on('scroll.disqus_scroll', function () {
+              var scrollTop = document.documentElement.scrollTop;
+              if (scrollTop >= offsetTop) {
+                $(window).off('.disqus_scroll');
+                loadComments();
+              }
+            });
+          }
+        });
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -102,18 +102,18 @@
 
 
 
-  <meta name="description" content="一些可能会用到的资料整理集合">
-<meta name="keywords" content="资料">
+  <meta name="description" content="异步方法改为同步方法，转自#iOS知识小集#">
+<meta name="keywords" content="笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="资料整理集合">
-<meta property="og:url" content="https://tongfangyuan.github.io/2018/06/28/资料整理集合/index.html">
+<meta property="og:title" content="模板文件">
+<meta property="og:url" content="https://tongfangyuan.github.io/2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /index.html">
 <meta property="og:site_name" content="开发随记">
-<meta property="og:description" content="一些可能会用到的资料整理集合">
+<meta property="og:description" content="异步方法改为同步方法，转自#iOS知识小集#">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-07-07T03:28:29.000Z">
+<meta property="og:updated_time" content="2018-12-04T06:14:52.903Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="资料整理集合">
-<meta name="twitter:description" content="一些可能会用到的资料整理集合">
+<meta name="twitter:title" content="模板文件">
+<meta name="twitter:description" content="异步方法改为同步方法，转自#iOS知识小集#">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://tongfangyuan.github.io/2018/06/28/资料整理集合/"/>
+  <link rel="canonical" href="https://tongfangyuan.github.io/2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /"/>
 
 
 
@@ -132,7 +132,7 @@
   };
 </script>
 
-  <title>资料整理集合 | 开发随记</title>
+  <title>模板文件 | 开发随记</title>
   
 
 
@@ -280,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://tongfangyuan.github.io/2018/06/28/资料整理集合/">
+    <link itemprop="mainEntityOfPage" href="https://tongfangyuan.github.io/2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tong">
@@ -297,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">资料整理集合
+          <h1 class="post-title" itemprop="name headline">模板文件
               
             
           </h1>
@@ -322,7 +322,7 @@
                 
               
 
-              <time title="Created: 2018-06-28 20:54:10" itemprop="dateCreated datePublished" datetime="2018-06-28T20:54:10+08:00">2018-06-28</time>
+              <time title="Created: 2018-11-23 16:58:02" itemprop="dateCreated datePublished" datetime="2018-11-23T16:58:02+08:00">2018-11-23</time>
             
 
             
@@ -339,7 +339,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-07-07 11:28:29" itemprop="dateModified" datetime="2018-07-07T11:28:29+08:00">2018-07-07</time>
+                <time title="Modified: 2018-12-04 14:14:52" itemprop="dateModified" datetime="2018-12-04T14:14:52+08:00">2018-12-04</time>
               
             
           </span>
@@ -356,7 +356,14 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/资料/" itemprop="url" rel="index"><span itemprop="name">资料</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/转载/" itemprop="url" rel="index"><span itemprop="name">转载</span></a></span>
 
                 
                 
@@ -371,9 +378,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/28/资料整理集合/#comments" itemprop="discussionUrl">
+                <a href="/2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/28/资料整理集合/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,15 +408,13 @@
       
 
       
-        <p>一些可能会用到的资料整理集合</p>
-<a id="more"></a>
-<h3 id="设计类"><a href="#设计类" class="headerlink" title="设计类"></a>设计类</h3><ul>
-<li><a href="http://nipponcolors.com/#cyohsyun" target="_blank" rel="noopener">一个非常棒的日本配色网站</a></li>
-<li><a href="https://pbs.twimg.com/media/AuiY8ThCIAIyKxh.png:large" target="_blank" rel="noopener">一个好看的配色方案</a></li>
-<li><a href="https://www.25xt.com/appdesign/15067.html" target="_blank" rel="noopener">五套舒适的配色方案</a></li>
-</ul>
-<h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><ul>
-<li><a href="http://www.axuer.com/article/32" target="_blank" rel="noopener">9款ios开发者辅助工具</a></li>
+        <p>异步方法改为同步方法，转自<a href="https://m.weibo.cn/search?containerid=231522type%3D1%26q%3D%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23%26t%3D10&amp;extparam=%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23&amp;luicode=20000061&amp;lfid=4293108377612887" target="_blank" rel="noopener">#iOS知识小集#</a><br><a id="more"></a></p>
+<blockquote>
+<p>有的时候，我们会遇到一个同步方法（该方法的所有工作在返回之前已全部完成）的内部实现，需要依赖其他异步过程的情况。比如接口定义了一个开启聊天会话的方法，返回值为布尔值。从返回值类型不难推测，我们希望这个方法返回之时，会话是否开启成功就已经确切得知。然而，开启会话的内部实现仅仅是向服务端发起连接请求，是否连接成功需要等待服务端的响应，显然这是一个异步的过程。这就是一个常见的异步过程需要改造为同步（对外表现同步）的场景。如何实现呢？可以采用 gcd 的信号量：发起连接请求之前，创建一个初始值为 0 的信号量，在方法返回之前请求该信号量（P 操作），同时，在连接请求的结果回调中释放该信号量（V 操作）。这样，发起连接请求后，由于信号量初始值为0，会阻塞在请求信号量的地方，连接请求回调回来之后，释放信号量，刚刚的信号量请求被满足，方法得以返回。这样对外表现即为一个同步且耗时的开启会话操作，虽然这个场景比较别扭，但与此类似的情景是很常见的。</p>
+</blockquote>
+<h5 id="在大家熟知的-AFNetworking-中，就有这样的应用："><a href="#在大家熟知的-AFNetworking-中，就有这样的应用：" class="headerlink" title="在大家熟知的 AFNetworking 中，就有这样的应用："></a>在大家熟知的 <code>AFNetworking</code> 中，就有这样的应用：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">- (NSArray *)tasksForKeyPath:(NSString *)keyPath &#123;</span><br><span class="line"></span><br><span class="line">__block NSArray *tasks = nil;</span><br><span class="line"></span><br><span class="line">dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</span><br><span class="line"></span><br><span class="line">[self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) &#123;</span><br><span class="line"></span><br><span class="line">if ([keyPath isEqualToString:NSStringFromSelector( @selector(dataTasks))]) &#123;</span><br><span class="line"></span><br><span class="line">tasks = dataTasks;</span><br><span class="line"></span><br><span class="line">&#125; else if ([keyPath isEqualToString:NSStringFromSelector( @selector(uploadTasks))]) &#123;</span><br><span class="line"></span><br><span class="line">tasks = uploadTasks;</span><br><span class="line"></span><br><span class="line">&#125; else if ([keyPath isEqualToString:NSStringFromSelector( @selector(downloadTasks))]) &#123;</span><br><span class="line"></span><br><span class="line">tasks = downloadTasks;</span><br><span class="line"></span><br><span class="line">&#125; else if ([keyPath isEqualToString:NSStringFromSelector( @selector(tasks))]) &#123;</span><br><span class="line"></span><br><span class="line">tasks = [@[dataTasks, uploadTasks, downloadTasks] valueForKeyPath:@&quot; @unionOfArrays.self&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dispatch_semaphore_signal(semaphore);</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line"></span><br><span class="line">return tasks;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h4><ul>
+<li><a href="https://m.weibo.cn/search?containerid=231522type%3D1%26q%3D%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23%26t%3D10&amp;extparam=%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23&amp;luicode=20000061&amp;lfid=4293108377612887" target="_blank" rel="noopener">#iOS知识小集#</a></li>
 </ul>
 
       
@@ -431,7 +436,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/资料/" rel="tag"># 资料</a>
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
           
         </div>
       
@@ -444,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/26/关于夜间模式功能实践的一次记录/" rel="next" title="关于夜间模式功能实践的一次记录">
-                <i class="fa fa-chevron-left"></i> 关于夜间模式功能实践的一次记录
+              <a href="/2018/11/21/iOS 使用第三方字体/" rel="next" title="iOS 使用第三方字体">
+                <i class="fa fa-chevron-left"></i> iOS 使用第三方字体
               </a>
             
           </div>
@@ -454,8 +459,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/03/利用 Class-dump 反编译第三方ipa/" rel="prev" title="利用 Class-dump 反编译第三方ipa">
-                利用 Class-dump 反编译第三方ipa <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/29/一个简单的播放器实现/" rel="prev" title="一个简单的播放器实现">
+                一个简单的播放器实现 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -655,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计类"><span class="nav-number">1.</span> <span class="nav-text">设计类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS"><span class="nav-number">2.</span> <span class="nav-text">iOS</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#在大家熟知的-AFNetworking-中，就有这样的应用："><span class="nav-number">1.</span> <span class="nav-text">在大家熟知的 AFNetworking 中，就有这样的应用：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关链接"><span class="nav-number"></span> <span class="nav-text">相关链接</span></a></div>
             
 
           </div>
@@ -809,9 +814,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://tongfangyuan.github.io/2018/06/28/资料整理集合/';
-        this.page.identifier = '2018/06/28/资料整理集合/';
-        this.page.title = '资料整理集合';
+        this.page.url = 'https://tongfangyuan.github.io/2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /';
+        this.page.identifier = '2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /';
+        this.page.title = '模板文件';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');

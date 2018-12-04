@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tongfangyuan.github.io/"/>
-  <updated>2018-11-21T14:21:19.522Z</updated>
+  <updated>2018-12-04T06:14:52.904Z</updated>
   <id>https://tongfangyuan.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个简单的播放器实现</title>
+    <link href="https://tongfangyuan.github.io/2018/11/29/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%92%AD%E6%94%BE%E5%99%A8%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://tongfangyuan.github.io/2018/11/29/一个简单的播放器实现/</id>
+    <published>2018-11-29T07:00:27.000Z</published>
+    <updated>2018-12-04T06:14:52.904Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>最近有个简单播放器的需求需要实现，公司其他项目本身已有播放器实现但是业务逻辑不满足现有需求，所以参照原有模块并结合相关资料自己实现了一个简单播放器，该播放器是基于<code>AVPlayer</code>实现的。</p></blockquote><a id="more"></a><h4 id="播放器功能介绍"><a href="#播放器功能介绍" class="headerlink" title="播放器功能介绍"></a>播放器功能介绍</h4><ul><li>单例实现</li><li>播放、暂停、切歌、缓冲处理、播放进度实时更新</li><li>后台持续播放</li><li>音频中断处理</li></ul><h4 id="协议代理"><a href="#协议代理" class="headerlink" title="协议代理"></a>协议代理</h4><h5 id="播放器功能协议TTPlayerProtocol"><a href="#播放器功能协议TTPlayerProtocol" class="headerlink" title="播放器功能协议TTPlayerProtocol"></a>播放器功能协议<code>TTPlayerProtocol</code></h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">TTPlayerProtocol</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) playMusicWithInfo:(<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;)model;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) enterPlayQueueWithSingle:(<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;)model;</span><br><span class="line">- (<span class="keyword">void</span>) enterPlayQueueWithArray:(<span class="built_in">NSArray</span>&lt;<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;&gt; *)models;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) replaceAllQueueWithSingle:(<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;)model;</span><br><span class="line">- (<span class="keyword">void</span>) replaceAllQueueWithArray:(<span class="built_in">NSArray</span>&lt;<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;&gt; *)models;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>) isPlaying;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>) isNextExist;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>) isPreExist;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) next;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) pre;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) pause;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) stop;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) play;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) continuePlay;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">double</span>) currentSecs;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">double</span>) durationSecs;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><h5 id="播放器状态代理TTAudioPlayerStatusDelegate"><a href="#播放器状态代理TTAudioPlayerStatusDelegate" class="headerlink" title="播放器状态代理TTAudioPlayerStatusDelegate"></a>播放器状态代理<code>TTAudioPlayerStatusDelegate</code></h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">TTAudioPlayerStatusDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerPlayStart;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerPlayFinished;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerPause;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerStoped;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerPlayError:(<span class="built_in">NSError</span> *)error;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerSeekPosition:(<span class="keyword">double</span>)progress;</span><br><span class="line">- (<span class="keyword">void</span>)ttAudioPlayerUpdateProgress:(<span class="keyword">double</span>)progress;</span><br><span class="line">- (<span class="keyword">void</span>)ttAduioPlayerMusicInfoUpdate:(<span class="keyword">id</span>&lt;TTMusicModelProtocol&gt;)musicInfo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><h5 id="数据模型协议-TTMusicModelProtocol"><a href="#数据模型协议-TTMusicModelProtocol" class="headerlink" title="数据模型协议 TTMusicModelProtocol"></a>数据模型协议 <code>TTMusicModelProtocol</code></h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">TTMusicModelProtocol</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *url;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *cover;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *author;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *album;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><h4 id="类介绍"><a href="#类介绍" class="headerlink" title="类介绍"></a>类介绍</h4><h5 id="TTAudioPlayer"><a href="#TTAudioPlayer" class="headerlink" title="TTAudioPlayer"></a><code>TTAudioPlayer</code></h5><p>播放器对象，实现了<code>TTPlayerProtocol</code>协议<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TTAudioPlayer</span> : <span class="title">NSObject</span>&lt;<span class="title">TTPlayerProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">id</span>&lt;TTAudioPlayerStatusDelegate&gt; delegate;</span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)shareInstance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p><h4 id="TTMusicModel"><a href="#TTMusicModel" class="headerlink" title="TTMusicModel"></a><code>TTMusicModel</code></h4><p>音乐数据模型，遵守<code>TTMusicModelProtocol</code>协议，可扩展</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TTMusicModel</span> : <span class="title">NSObject</span>&lt;<span class="title">TTMusicModelProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><h4 id="问题与功能实现细节"><a href="#问题与功能实现细节" class="headerlink" title="问题与功能实现细节"></a>问题与功能实现细节</h4><h5 id="设置播放器在后台，锁屏，静音模式下都可以播放"><a href="#设置播放器在后台，锁屏，静音模式下都可以播放" class="headerlink" title="设置播放器在后台，锁屏，静音模式下都可以播放"></a>设置播放器在后台，锁屏，静音模式下都可以播放</h5><h6 id="1-在后台模式中打开音频播放模式"><a href="#1-在后台模式中打开音频播放模式" class="headerlink" title="1.在后台模式中打开音频播放模式"></a>1.在后台模式中打开音频播放模式</h6><p><strong>Targets–&gt;Capabilities–&gt;BackgroundModes–&gt;ON</strong></p><p><strong>勾选 Audio,Airplay,and Picture in Picture</strong><br><img src="http://ww1.sinaimg.cn/large/9f473525gy1fxoprqatr7j20r50ci0u2.jpg" alt=""></p><h6 id="2-设置音频类别"><a href="#2-设置音频类别" class="headerlink" title="2.设置音频类别"></a>2.设置音频类别</h6><p>这段代码我写在播放器初始化的时候<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">AVAudioSession</span> sharedInstance] setCategory:<span class="built_in">AVAudioSessionCategoryPlayback</span> error:<span class="literal">nil</span>];</span><br><span class="line">[[<span class="built_in">AVAudioSession</span> sharedInstance] setActive:<span class="literal">YES</span> error:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure></p><h6 id="3-开启后台任务"><a href="#3-开启后台任务" class="headerlink" title="3.开启后台任务"></a>3.开启后台任务</h6><p>前面两步做完之后，app进入后台音频是可以继续播放，但是播完一首之后，后面的就不会播放了，这里开启后台任务就好了</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> ()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIBackgroundTaskIdentifier</span> bgTask;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><p>进入后台后开启任务<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line"></span><br><span class="line">    [[<span class="built_in">UIApplication</span> sharedApplication] beginReceivingRemoteControlEvents];</span><br><span class="line">    bgTask = [application beginBackgroundTaskWithExpirationHandler:^&#123;</span><br><span class="line">    [application endBackgroundTask:<span class="keyword">self</span>-&gt;bgTask];</span><br><span class="line">    <span class="keyword">self</span>-&gt;bgTask = <span class="built_in">UIBackgroundTaskInvalid</span>;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>进入前台，结束后台任务<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)applicationWillEnterForeground:(<span class="built_in">UIApplication</span> *)application &#123;</span><br><span class="line">    <span class="keyword">if</span> (bgTask != <span class="built_in">UIBackgroundTaskInvalid</span>) &#123;</span><br><span class="line">    [application endBackgroundTask:bgTask];</span><br><span class="line">    bgTask = <span class="built_in">UIBackgroundTaskInvalid</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h5 id="处理中断事件"><a href="#处理中断事件" class="headerlink" title="处理中断事件"></a>处理中断事件</h5><p>监听中断通知</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(handleInterreptionNotification:) name:<span class="built_in">AVAudioSessionInterruptionNotification</span> object:[<span class="built_in">AVAudioSession</span> sharedInstance]];</span><br></pre></td></tr></table></figure><p>中断处理</p><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)handleInterreptionNotification:(<span class="built_in">NSNotification</span> *)notification &#123;</span><br><span class="line">    <span class="keyword">if</span> ([notification.userInfo count] == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">AVAudioSessionInterruptionTypeBegan</span> == [notification.userInfo[<span class="built_in">AVAudioSessionInterruptionTypeKey</span>] intValue]) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"中断，暂停音乐"</span>);</span><br><span class="line">        [<span class="keyword">self</span> pause];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">AVAudioSessionInterruptionTypeEnded</span> == [notification.userInfo[<span class="built_in">AVAudioSessionInterruptionTypeKey</span>] intValue]) &#123;</span><br><span class="line">        <span class="built_in">NSError</span> *error,*activeError;</span><br><span class="line">        [[<span class="built_in">AVAudioSession</span> sharedInstance] setCategory:<span class="built_in">AVAudioSessionCategoryPlayback</span> withOptions:<span class="number">0</span> error:&amp;error];</span><br><span class="line">        [[<span class="built_in">AVAudioSession</span> sharedInstance] setActive:<span class="literal">YES</span> error:&amp;activeError];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"中断结束，设置类别失败:%@"</span>,error);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (activeError) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"中断结束，获取音频焦点失败:%@"</span>,activeError);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"中断结束，恢复音乐播放"</span>);</span><br><span class="line">            [<span class="keyword">self</span> continuePlay];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>#### </p><ul><li><a href="https://github.com/TongFangyuan/Demos/tree/master/PlayerDemo" target="_blank" rel="noopener">下载Demo</a></li><li><a href="https://stackoverflow.com/questions/10429204/how-to-handle-background-audio-playing-while-ios-device-is-locked-or-on-another" target="_blank" rel="noopener">How to handle background audio playing while iOS device is locked or on another application?</a></li><li><a href="https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html" target="_blank" rel="noopener">在退出时启动后台任务</a></li><li><a href="https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionCategoriesandModes/AudioSessionCategoriesandModes.html" target="_blank" rel="noopener">音频会话类别和模式</a></li><li><a href="https://www.cnblogs.com/ziyi--caolu/p/5673160.html" target="_blank" rel="noopener">音视频的缓冲处理</a></li><li><a href="https://stackoverflow.com/questions/5655864/check-play-state-of-avplayer" target="_blank" rel="noopener">判断播放器是否在播放</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近有个简单播放器的需求需要实现，公司其他项目本身已有播放器实现但是业务逻辑不满足现有需求，所以参照原有模块并结合相关资料自己实现了一个简单播放器，该播放器是基于&lt;code&gt;AVPlayer&lt;/code&gt;实现的。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
+    
+    
+      <category term="笔记" scheme="https://tongfangyuan.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模板文件</title>
+    <link href="https://tongfangyuan.github.io/2018/11/23/%E3%80%8C%20%E8%BD%AC%E8%BD%BD%20%E3%80%8D%E5%88%A9%E7%94%A8gcd%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%B0%86%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95%E6%94%B9%E9%80%A0%E4%B8%BA%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%20/"/>
+    <id>https://tongfangyuan.github.io/2018/11/23/「 转载 」利用gcd信号量将异步方法改造为同步方法 /</id>
+    <published>2018-11-23T08:58:02.000Z</published>
+    <updated>2018-12-04T06:14:52.903Z</updated>
+    
+    <content type="html"><![CDATA[<p>异步方法改为同步方法，转自<a href="https://m.weibo.cn/search?containerid=231522type%3D1%26q%3D%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23%26t%3D10&amp;extparam=%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23&amp;luicode=20000061&amp;lfid=4293108377612887" target="_blank" rel="noopener">#iOS知识小集#</a><br><a id="more"></a></p><blockquote><p>有的时候，我们会遇到一个同步方法（该方法的所有工作在返回之前已全部完成）的内部实现，需要依赖其他异步过程的情况。比如接口定义了一个开启聊天会话的方法，返回值为布尔值。从返回值类型不难推测，我们希望这个方法返回之时，会话是否开启成功就已经确切得知。然而，开启会话的内部实现仅仅是向服务端发起连接请求，是否连接成功需要等待服务端的响应，显然这是一个异步的过程。这就是一个常见的异步过程需要改造为同步（对外表现同步）的场景。如何实现呢？可以采用 gcd 的信号量：发起连接请求之前，创建一个初始值为 0 的信号量，在方法返回之前请求该信号量（P 操作），同时，在连接请求的结果回调中释放该信号量（V 操作）。这样，发起连接请求后，由于信号量初始值为0，会阻塞在请求信号量的地方，连接请求回调回来之后，释放信号量，刚刚的信号量请求被满足，方法得以返回。这样对外表现即为一个同步且耗时的开启会话操作，虽然这个场景比较别扭，但与此类似的情景是很常见的。</p></blockquote><h5 id="在大家熟知的-AFNetworking-中，就有这样的应用："><a href="#在大家熟知的-AFNetworking-中，就有这样的应用：" class="headerlink" title="在大家熟知的 AFNetworking 中，就有这样的应用："></a>在大家熟知的 <code>AFNetworking</code> 中，就有这样的应用：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">- (NSArray *)tasksForKeyPath:(NSString *)keyPath &#123;</span><br><span class="line"></span><br><span class="line">__block NSArray *tasks = nil;</span><br><span class="line"></span><br><span class="line">dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</span><br><span class="line"></span><br><span class="line">[self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) &#123;</span><br><span class="line"></span><br><span class="line">if ([keyPath isEqualToString:NSStringFromSelector( @selector(dataTasks))]) &#123;</span><br><span class="line"></span><br><span class="line">tasks = dataTasks;</span><br><span class="line"></span><br><span class="line">&#125; else if ([keyPath isEqualToString:NSStringFromSelector( @selector(uploadTasks))]) &#123;</span><br><span class="line"></span><br><span class="line">tasks = uploadTasks;</span><br><span class="line"></span><br><span class="line">&#125; else if ([keyPath isEqualToString:NSStringFromSelector( @selector(downloadTasks))]) &#123;</span><br><span class="line"></span><br><span class="line">tasks = downloadTasks;</span><br><span class="line"></span><br><span class="line">&#125; else if ([keyPath isEqualToString:NSStringFromSelector( @selector(tasks))]) &#123;</span><br><span class="line"></span><br><span class="line">tasks = [@[dataTasks, uploadTasks, downloadTasks] valueForKeyPath:@&quot; @unionOfArrays.self&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dispatch_semaphore_signal(semaphore);</span><br><span class="line"></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line"></span><br><span class="line">return tasks;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h4><ul><li><a href="https://m.weibo.cn/search?containerid=231522type%3D1%26q%3D%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23%26t%3D10&amp;extparam=%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23&amp;luicode=20000061&amp;lfid=4293108377612887" target="_blank" rel="noopener">#iOS知识小集#</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;异步方法改为同步方法，转自&lt;a href=&quot;https://m.weibo.cn/search?containerid=231522type%3D1%26q%3D%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23%26t%3D10&amp;amp;extparam=%23iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86%23&amp;amp;luicode=20000061&amp;amp;lfid=4293108377612887&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;#iOS知识小集#&lt;/a&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
+    
+      <category term="转载" scheme="https://tongfangyuan.github.io/categories/iOS/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="笔记" scheme="https://tongfangyuan.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS 使用第三方字体</title>
@@ -199,6 +247,32 @@
   </entry>
   
   <entry>
+    <title>初学前端CSS小记一</title>
+    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%B8%80/"/>
+    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/</id>
+    <published>2018-05-17T02:32:50.000Z</published>
+    <updated>2018-07-04T13:38:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><h3 id="新手开发中遇到的问题-在这里总结一下-方便以后排查"><a href="#新手开发中遇到的问题-在这里总结一下-方便以后排查" class="headerlink" title="新手开发中遇到的问题,在这里总结一下,方便以后排查"></a>新手开发中遇到的问题,在这里总结一下,方便以后排查</h3></blockquote><h6 id="去掉button点击后的蓝框"><a href="#去掉button点击后的蓝框" class="headerlink" title="去掉button点击后的蓝框"></a>去掉<code>button</code>点击后的蓝框</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">outline:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="去掉button边框阴影"><a href="#去掉button边框阴影" class="headerlink" title="去掉button边框阴影"></a>去掉<code>button</code>边框阴影</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">border:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="padding、margin、border-图解"><a href="#padding、margin、border-图解" class="headerlink" title="padding、margin、border 图解"></a>padding、margin、border 图解</h6><p><img src="https://i.stack.imgur.com/D9nU6.gif" alt="image"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;h3 id=&quot;新手开发中遇到的问题-在这里总结一下-方便以后排查&quot;&gt;&lt;a href=&quot;#新手开发中遇到的问题-在这里总结一下-方便以后排查&quot; class=&quot;headerlink&quot; title=&quot;新手开发中遇到的问题,在这里总结一下,方便以后排查&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="https://tongfangyuan.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="CSS" scheme="https://tongfangyuan.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初学前端之CSS常用的几种选择器</title>
     <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E9%80%89%E6%8B%A9%E5%99%A8/"/>
     <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS常用的几种选择器/</id>
@@ -237,32 +311,6 @@
       
       
         &lt;h3 id=&quot;去掉下划线&quot;&gt;&lt;a href=&quot;#去掉下划线&quot; class=&quot;headerlink&quot; title=&quot;去掉下划线&quot;&gt;&lt;/a&gt;去掉下划线&lt;/h3&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://tongfangyuan.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="CSS" scheme="https://tongfangyuan.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>初学前端CSS小记一</title>
-    <link href="https://tongfangyuan.github.io/2018/05/17/%E5%88%9D%E5%AD%A6%E5%89%8D%E7%AB%AF%E4%B9%8BCSS%E5%B0%8F%E8%AE%B0%E4%B8%80/"/>
-    <id>https://tongfangyuan.github.io/2018/05/17/初学前端之CSS小记一/</id>
-    <published>2018-05-17T02:32:50.000Z</published>
-    <updated>2018-07-04T13:38:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><h3 id="新手开发中遇到的问题-在这里总结一下-方便以后排查"><a href="#新手开发中遇到的问题-在这里总结一下-方便以后排查" class="headerlink" title="新手开发中遇到的问题,在这里总结一下,方便以后排查"></a>新手开发中遇到的问题,在这里总结一下,方便以后排查</h3></blockquote><h6 id="去掉button点击后的蓝框"><a href="#去掉button点击后的蓝框" class="headerlink" title="去掉button点击后的蓝框"></a>去掉<code>button</code>点击后的蓝框</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">outline:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="去掉button边框阴影"><a href="#去掉button边框阴影" class="headerlink" title="去掉button边框阴影"></a>去掉<code>button</code>边框阴影</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button &#123;</span><br><span class="line">border:none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h6 id="padding、margin、border-图解"><a href="#padding、margin、border-图解" class="headerlink" title="padding、margin、border 图解"></a>padding、margin、border 图解</h6><p><img src="https://i.stack.imgur.com/D9nU6.gif" alt="image"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;h3 id=&quot;新手开发中遇到的问题-在这里总结一下-方便以后排查&quot;&gt;&lt;a href=&quot;#新手开发中遇到的问题-在这里总结一下-方便以后排查&quot; class=&quot;headerlink&quot; title=&quot;新手开发中遇到的问题,在这里总结一下,方便以后排查&quot;&gt;&lt;/
       
     
     </summary>
@@ -455,53 +503,6 @@
     
     
       <category term="笔记" scheme="https://tongfangyuan.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>模板文件</title>
-    <link href="https://tongfangyuan.github.io/2016/07/03/%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6/"/>
-    <id>https://tongfangyuan.github.io/2016/07/03/模板文件/</id>
-    <published>2016-07-03T02:54:35.000Z</published>
-    <updated>2018-07-07T03:28:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是一个模板文件</p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是一个模板文件&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://tongfangyuan.github.io/categories/iOS/"/>
-    
-    
-      <category term="模板" scheme="https://tongfangyuan.github.io/tags/%E6%A8%A1%E6%9D%BF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>README</title>
-    <link href="https://tongfangyuan.github.io/2014/06/07/README/"/>
-    <id>https://tongfangyuan.github.io/2014/06/07/README/</id>
-    <published>2014-06-07T06:35:23.000Z</published>
-    <updated>2018-06-07T13:10:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Blog"><a href="#Blog" class="headerlink" title="Blog"></a>Blog</h1><h4 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h4><p>{<strong>以下是码云平台说明，您可以替换为您的项目简介</strong><br>码云是开源中国推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台<br>无论是个人、团队、或是企业，都能够用码云实现代码托管、项目管理、协作开发。企业项目请看 <a href="https://gitee.com/enterprises" target="_blank" rel="noopener">https://gitee.com/enterprises</a>}</p><h4 id="软件架构"><a href="#软件架构" class="headerlink" title="软件架构"></a>软件架构</h4><p>软件架构说明</p><h4 id="安装教程"><a href="#安装教程" class="headerlink" title="安装教程"></a>安装教程</h4><ol><li>xxxx</li><li>xxxx</li><li>xxxx</li></ol><h4 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h4><ol><li>xxxx</li><li>xxxx</li><li>xxxx</li></ol><h4 id="参与贡献"><a href="#参与贡献" class="headerlink" title="参与贡献"></a>参与贡献</h4><ol><li>Fork 本项目</li><li>新建 Feat_xxx 分支</li><li>提交代码</li><li>新建 Pull Request</li></ol><h4 id="码云特技"><a href="#码云特技" class="headerlink" title="码云特技"></a>码云特技</h4><ol><li>使用 Readme_XXX.md 来支持不同的语言，例如 Readme_en.md, Readme_zh.md</li><li>码云官方博客 <a href="https://blog.gitee.com" target="_blank" rel="noopener">blog.gitee.com</a></li><li>你可以 <a href="https://gitee.com/explore" target="_blank" rel="noopener">https://gitee.com/explore</a> 这个地址来了解码云上的优秀开源项目</li><li><a href="https://gitee.com/gvp" target="_blank" rel="noopener">GVP</a> 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目</li><li>码云官方提供的使用手册 <a href="http://git.mydoc.io/" target="_blank" rel="noopener">http://git.mydoc.io/</a></li><li>码云封面人物是一档用来展示码云会员风采的栏目 <a href="https://gitee.com/gitee-stars/" target="_blank" rel="noopener">https://gitee.com/gitee-stars/</a></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Blog&quot;&gt;&lt;a href=&quot;#Blog&quot; class=&quot;headerlink&quot; title=&quot;Blog&quot;&gt;&lt;/a&gt;Blog&lt;/h1&gt;&lt;h4 id=&quot;项目介绍&quot;&gt;&lt;a href=&quot;#项目介绍&quot; class=&quot;headerlink&quot; title=&quot;项目介绍&quot;&gt;&lt;/a
-      
-    
-    </summary>
-    
-      <category term="README" scheme="https://tongfangyuan.github.io/categories/README/"/>
-    
-    
-      <category term="README" scheme="https://tongfangyuan.github.io/tags/README/"/>
     
   </entry>
   
