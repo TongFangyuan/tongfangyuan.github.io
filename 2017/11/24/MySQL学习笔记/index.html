@@ -403,102 +403,102 @@
       
         <h1 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h1><ul>
 <li><p>新增数据库</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">Database</span> tp5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create Database tp5</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看数据库,查看将要创建的数据库是否存在</p>
 </li>
 </ul>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> tp5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW tp5</span><br></pre></td></tr></table></figure>
 <ul>
 <li>选择数据库</li>
 </ul>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> tp5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USE tp5</span><br></pre></td></tr></table></figure>
 <ul>
 <li>删除数据库</li>
 </ul>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> tp5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE tp5</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h1 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h1><ul>
 <li><p>创建表</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</span><br><span class="line"><span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'主键'</span>,</span><br><span class="line"><span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">40</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'用户名'</span>,</span><br><span class="line"><span class="string">`headurl`</span> <span class="built_in">varchar</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'头像地址'</span>,</span><br><span class="line"><span class="string">`tel`</span> <span class="built_in">varchar</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'电话'</span>,</span><br><span class="line"><span class="string">`createtime`</span> <span class="built_in">varchar</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'注册时间'</span>,</span><br><span class="line"><span class="string">`password`</span> <span class="built_in">varchar</span>(<span class="number">40</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'密码'</span>,</span><br><span class="line"><span class="string">`age`</span> <span class="built_in">int</span>(<span class="number">3</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> AUTO_INCREMENT=<span class="number">20</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `user` (</span><br><span class="line">`id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT &apos;主键&apos;,</span><br><span class="line">`name` varchar(40) NOT NULL COMMENT &apos;用户名&apos;,</span><br><span class="line">`headurl` varchar(100) DEFAULT NULL COMMENT &apos;头像地址&apos;,</span><br><span class="line">`tel` varchar(11) DEFAULT NULL COMMENT &apos;电话&apos;,</span><br><span class="line">`createtime` varchar(11) DEFAULT NULL COMMENT &apos;注册时间&apos;,</span><br><span class="line">`password` varchar(40) DEFAULT NULL COMMENT &apos;密码&apos;,</span><br><span class="line">`age` int(3) DEFAULT NULL,</span><br><span class="line">PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>新增一条数据</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `user` (`name`,`password`,`tel`,`age`)</span><br><span class="line">VALUES (<span class="string">'数据'</span>,<span class="string">'21232f297a57a5a743894a0e4a801fc3'</span>,<span class="string">'18611488388'</span>,<span class="string">'39'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `user` (`name`,`password`,`tel`,`age`)</span><br><span class="line">VALUES (&apos;数据&apos;,&apos;21232f297a57a5a743894a0e4a801fc3&apos;,&apos;18611488388&apos;,&apos;39&apos;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>新增多条数据</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `user` (`name`,`password`,`tel`,`age`)</span><br><span class="line">VALUES (<span class="string">'胡鹏'</span>,<span class="string">'21232f297a57a5a743894a0e4a801fc3'</span>,<span class="string">'18842438941'</span>,<span class="string">'23'</span>),</span><br><span class="line">(<span class="string">'张新'</span>,<span class="string">'21232f297a57a5a743894a0e4a801fc3'</span>,<span class="string">'18842734041'</span>,<span class="string">'22'</span>),</span><br><span class="line">(<span class="string">'杨成'</span>,<span class="string">'21232f297a57a5a743894a0e4a801fc3'</span>,<span class="string">'18842437041'</span>,<span class="string">'24'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `user` (`name`,`password`,`tel`,`age`)</span><br><span class="line">VALUES (&apos;胡鹏&apos;,&apos;21232f297a57a5a743894a0e4a801fc3&apos;,&apos;18842438941&apos;,&apos;23&apos;),</span><br><span class="line">(&apos;张新&apos;,&apos;21232f297a57a5a743894a0e4a801fc3&apos;,&apos;18842734041&apos;,&apos;22&apos;),</span><br><span class="line">(&apos;杨成&apos;,&apos;21232f297a57a5a743894a0e4a801fc3&apos;,&apos;18842437041&apos;,&apos;24&apos;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询用户表中所有用户数据</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="symbol">`user`</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `user`</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询user表中,所有用户的手机号</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> tel <span class="keyword">from</span> <span class="symbol">`user`</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT tel from `user`</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询用户id为5的用户数据</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> <span class="symbol">`user`</span> <span class="keyword">WHERE</span> id=<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from `user` WHERE id=5</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询年龄大于16的用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span><span class="built_in"> user </span>where age&gt;16</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user where age&gt;16</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询年龄大于20小于40的用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span><span class="built_in"> user </span>where age&gt;20 <span class="keyword">and</span> age&lt;40</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user where age&gt;20 and age&lt;40</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询年龄大于20小于40的前5个用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span><span class="built_in"> user </span>where age&gt;20 <span class="keyword">and</span> age&lt;40 LIMIT 5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user where age&gt;20 and age&lt;40 LIMIT 5</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>显示年龄最小的五个人</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span><span class="built_in"> user </span>where age&gt;0 order by age  asc limit 5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user where age&gt;0 order by age  asc limit 5</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询年龄大于20小于40的用户的名称</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name <span class="keyword">from</span><span class="built_in"> user </span>where age&gt;20 <span class="keyword">and</span> age&lt;40</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT name from user where age&gt;20 and age&lt;40</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>所有用户按照age从小到大排序 desc降序 asc升序排序</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span><span class="built_in"> user </span>order by age desc</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user order by age desc</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询age为null的用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span><span class="built_in"> user </span>where age is <span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user where age is NULL</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询年龄唯一的用户</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> age <span class="keyword">FROM</span> <span class="symbol">`user`</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT age FROM `user`</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h4><ul>
 <li><p>查询商品表中哪些用户购买过商品，并将用户信息显示出来</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">user</span>.id,<span class="keyword">user</span>.name,order_goods.name</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">user</span>,order_goods</span><br><span class="line"><span class="keyword">where</span> order_goods.uid=<span class="keyword">user</span>.id</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT user.id,user.name,order_goods.name</span><br><span class="line">from user,order_goods</span><br><span class="line">where order_goods.uid=user.id</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询胡鹏买了哪些商品</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT user.<span class="built_in">id</span> <span class="keyword">as</span> uid,user.<span class="built_in">name</span> <span class="keyword">as</span> username,order_goods.<span class="built_in">name</span> <span class="keyword">as</span> shopname,order_goods.<span class="built_in">id</span> <span class="keyword">as</span> oid</span><br><span class="line"><span class="keyword">from</span> user,order_goods</span><br><span class="line"><span class="keyword">where</span> order_goods.uid=user.<span class="built_in">id</span></span><br><span class="line"><span class="keyword">and</span> user.<span class="built_in">name</span>='胡鹏'</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT user.id as uid,user.name as username,order_goods.name as shopname,order_goods.id as oid</span><br><span class="line">from user,order_goods</span><br><span class="line">where order_goods.uid=user.id</span><br><span class="line">and user.name=&apos;胡鹏&apos;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>左连接</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span> user</span><br><span class="line">left join order_goods</span><br><span class="line">on user.<span class="attribute">id</span>=order_goods.uid</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user</span><br><span class="line">left join order_goods</span><br><span class="line">on user.id=order_goods.uid</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>右连接</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span> user</span><br><span class="line">right join order_goods</span><br><span class="line">on user.<span class="attribute">id</span>=order_goods.uid</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user</span><br><span class="line">right join order_goods</span><br><span class="line">on user.id=order_goods.uid</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="子查询-用于子查询的关键字包括in、not-in、-、-、exists、not-exists等"><a href="#子查询-用于子查询的关键字包括in、not-in、-、-、exists、not-exists等" class="headerlink" title="子查询,用于子查询的关键字包括in、not in、=、!=、exists、not exists等"></a>子查询,用于子查询的关键字包括in、not in、=、!=、exists、not exists等</h4><ul>
 <li><p>查询uid为 5,8,15,17的用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * <span class="keyword">from</span> user</span><br><span class="line">where user.id <span class="keyword">in</span> (5,8,15,17)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from user</span><br><span class="line">where user.id in (5,8,15,17)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查询购买过商品的用户信息</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * <span class="keyword">from</span> user</span><br><span class="line">where id <span class="keyword">in</span> (select uid <span class="keyword">from</span> order_goods)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * from user</span><br><span class="line">where id in (select uid from order_goods)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="使用-update-语句进行记录更新"><a href="#使用-update-语句进行记录更新" class="headerlink" title="使用 update 语句进行记录更新"></a>使用 update 语句进行记录更新</h4><ul>
 <li><p>名称为’数据’的用户改名为叶尚乐</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE<span class="built_in"> user </span><span class="builtin-name">SET</span> <span class="attribute">name</span>=<span class="string">'叶尚乐'</span> where <span class="attribute">name</span>=<span class="string">'数据'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE user SET name=&apos;叶尚乐&apos; where name=&apos;数据&apos;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将叶尚乐age修改为25,手机号码修改为17605087708</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE<span class="built_in"> user </span><span class="builtin-name">set</span> <span class="attribute">age</span>=25,tel=17605087708 where <span class="attribute">name</span>=<span class="string">'叶尚乐'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE user set age=25,tel=17605087708 where name=&apos;叶尚乐&apos;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将id为20的用户age减一岁</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update<span class="built_in"> user </span><span class="builtin-name">set</span> <span class="attribute">age</span>=age-1 where <span class="attribute">id</span>=20;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set age=age-1 where id=20;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>删除user表中年龄为空的用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE <span class="keyword">FROM</span><span class="built_in"> user </span>where age is <span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM user where age is NULL</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>删除id不为17的胡鹏用户</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE <span class="keyword">FROM</span><span class="built_in"> user </span>where id!=17 <span class="keyword">and</span> <span class="attribute">name</span>=<span class="string">'胡鹏'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM user where id!=17 and name=&apos;胡鹏&apos;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="切记"><a href="#切记" class="headerlink" title="切记"></a>切记</h2><ul>
@@ -637,7 +637,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -709,7 +709,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">tags</span>
                   
                 </div>
