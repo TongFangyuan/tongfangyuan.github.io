@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="开发随记">
 <meta property="og:description" content="国际商品编码（International Article Number），即欧洲商品编码（European Article Number, EAN），原来只是欧洲范围内商品，而现在已是全球范围内产品交易的商品代码。为了适应读码器辨认的需要，这些代码又被做成大家熟知的条形码。EAN码又分EAN-13码和EAN-8码，EAN-13码是为普通商品设置，而EAN-8是专门为小商品设置的。">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2018-12-06T05:51:22.783Z">
+<meta property="og:updated_time" content="2018-12-06T06:16:23.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EAN码知识及校验位的计算">
 <meta name="twitter:description" content="国际商品编码（International Article Number），即欧洲商品编码（European Article Number, EAN），原来只是欧洲范围内商品，而现在已是全球范围内产品交易的商品代码。为了适应读码器辨认的需要，这些代码又被做成大家熟知的条形码。EAN码又分EAN-13码和EAN-8码，EAN-13码是为普通商品设置，而EAN-8是专门为小商品设置的。">
@@ -341,7 +341,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-06 13:51:22" itemprop="dateModified" datetime="2018-12-06T13:51:22+08:00">2018-12-06</time>
+                <time title="Modified: 2018-12-06 14:16:23" itemprop="dateModified" datetime="2018-12-06T14:16:23+08:00">2018-12-06</time>
               
             
           </span>
@@ -408,53 +408,53 @@
 </blockquote>
 <a id="more"></a>
 <blockquote>
-<h4 id="EAN码组成及意义"><a href="#EAN码组成及意义" class="headerlink" title="EAN码组成及意义"></a>EAN码组成及意义</h4><p>国家代码和生产商代码由EAN各国总部具体发放和管理，货品代码由由厂商自行设定。</p>
-</blockquote>
+<h4 id="EAN码组成及意义"><a href="#EAN码组成及意义" class="headerlink" title="EAN码组成及意义"></a>EAN码组成及意义</h4></blockquote>
+<p>国家代码和生产商代码由EAN各国总部具体发放和管理，货品代码由由厂商自行设定。</p>
 <blockquote>
-<h5 id="EAN-13码"><a href="#EAN-13码" class="headerlink" title="EAN-13码"></a>EAN-13码</h5><ul>
+<h5 id="EAN-13码"><a href="#EAN-13码" class="headerlink" title="EAN-13码"></a>EAN-13码</h5></blockquote>
+<ul>
 <li>国家代码（前3位）</li>
 <li>生产商代码（后4位）</li>
 <li>货品代码（再5位）</li>
 <li>计算机校验码（最后1位）</li>
 </ul>
-</blockquote>
 <blockquote>
-<h5 id="EAN-8码"><a href="#EAN-8码" class="headerlink" title="EAN-8码"></a>EAN-8码</h5><ul>
+<h5 id="EAN-8码"><a href="#EAN-8码" class="headerlink" title="EAN-8码"></a>EAN-8码</h5></blockquote>
+<ul>
 <li>国家代码（前3位）</li>
 <li>生产商代码（后2位）</li>
 <li>货品代码（再2位）</li>
 <li>计算机校验码（最后1位）</li>
 </ul>
-</blockquote>
 <blockquote>
-<h4 id="EAN-13码校验位计算"><a href="#EAN-13码校验位计算" class="headerlink" title="EAN-13码校验位计算"></a>EAN-13码校验位计算</h4><ol>
+<h4 id="EAN-13码校验位计算"><a href="#EAN-13码校验位计算" class="headerlink" title="EAN-13码校验位计算"></a>EAN-13码校验位计算</h4></blockquote>
+<ol>
 <li>取前<strong>12</strong>位码</li>
 <li>求奇数位和<strong>A</strong></li>
 <li>求欧数为和并取<strong>3倍</strong>值得到<strong>B</strong></li>
 <li>求<strong>A</strong>、<strong>B</strong>的和取个位数<strong>C</strong>，用<strong>10</strong>减<strong>C</strong>得到的值<strong>D</strong>就是<strong>校验位</strong></li>
 </ol>
-</blockquote>
 <blockquote>
-<h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><ol>
+<h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5></blockquote>
+<ol>
 <li>假设某国际商品编码的前 12 位是：<strong><code>490-8569-21968</code></strong></li>
 <li><code>A = (4+0+5+9+1+6)=25</code></li>
 <li><code>B = (9+8+6+2+9+8)*3 = 126</code></li>
 <li><code>C = (25+126) % 10 = 1; D = 10 - 1 = 9;</code></li>
 <li>完整的国际商品编码为 <code>490-8569-21968-9</code></li>
 </ol>
-</blockquote>
 <blockquote>
-<h5 id="OC代码"><a href="#OC代码" class="headerlink" title="OC代码"></a>OC代码</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">int</span>)getStandardUPCEANCheckNum:(<span class="built_in">NSString</span> *)s &#123;</span><br><span class="line">    <span class="keyword">int</span> length = (<span class="keyword">int</span>)[s length];</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i -= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> digit = (<span class="keyword">int</span>)[s characterAtIndex:i] - (<span class="keyword">int</span>)<span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (digit &lt; <span class="number">0</span> || digit &gt; <span class="number">9</span>) &#123;</span><br><span class="line">            <span class="keyword">@throw</span> [<span class="built_in">NSException</span> exceptionWithName:<span class="string">@"error"</span> reason:<span class="string">@"字符应该为数字"</span> userInfo:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        sum += digit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sum *= <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i -= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> digit = (<span class="keyword">int</span>)[s characterAtIndex:i] - (<span class="keyword">int</span>)<span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (digit &lt; <span class="number">0</span> || digit &gt; <span class="number">9</span>) &#123;</span><br><span class="line">            <span class="keyword">@throw</span> [<span class="built_in">NSException</span> exceptionWithName:<span class="string">@"error"</span> reason:<span class="string">@"字符应该为数字"</span> userInfo:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        sum += digit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">1000</span> - sum) % <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
+<h5 id="OC代码"><a href="#OC代码" class="headerlink" title="OC代码"></a>OC代码</h5></blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">int</span>)getStandardUPCEANCheckNum:(<span class="built_in">NSString</span> *)s &#123;</span><br><span class="line">    <span class="keyword">int</span> length = (<span class="keyword">int</span>)[s length];</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i -= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> digit = (<span class="keyword">int</span>)[s characterAtIndex:i] - (<span class="keyword">int</span>)<span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (digit &lt; <span class="number">0</span> || digit &gt; <span class="number">9</span>) &#123;</span><br><span class="line">            <span class="keyword">@throw</span> [<span class="built_in">NSException</span> exceptionWithName:<span class="string">@"error"</span> reason:<span class="string">@"字符应该为数字"</span> userInfo:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        sum += digit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sum *= <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i -= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> digit = (<span class="keyword">int</span>)[s characterAtIndex:i] - (<span class="keyword">int</span>)<span class="string">'0'</span>;</span><br><span class="line">        <span class="keyword">if</span> (digit &lt; <span class="number">0</span> || digit &gt; <span class="number">9</span>) &#123;</span><br><span class="line">            <span class="keyword">@throw</span> [<span class="built_in">NSException</span> exceptionWithName:<span class="string">@"error"</span> reason:<span class="string">@"字符应该为数字"</span> userInfo:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        sum += digit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">1000</span> - sum) % <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<h4 id="EAN-8码校验位计算"><a href="#EAN-8码校验位计算" class="headerlink" title="EAN-8码校验位计算"></a>EAN-8码校验位计算</h4><p>在前面补<code>00000</code>，按照EAN-13码方式计算</p>
-</blockquote>
+<h4 id="EAN-8码校验位计算"><a href="#EAN-8码校验位计算" class="headerlink" title="EAN-8码校验位计算"></a>EAN-8码校验位计算</h4></blockquote>
+<p>在前面补<code>00000</code>，按照EAN-13码方式计算</p>
 <blockquote>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4></blockquote>
+<ul>
 <li><a href="https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%B4%B2%E5%95%86%E5%93%81%E7%BC%96%E7%A0%81" target="_blank" rel="noopener">欧洲商品编码</a></li>
 <li><a href="http://yy2000sh.blog.163.com/blog/static/60445413201110219491304/" target="_blank" rel="noopener">EAN8和EAN13标准条形码校验位算法  </a></li>
 </ul>
-</blockquote>
 
       
     </div>
